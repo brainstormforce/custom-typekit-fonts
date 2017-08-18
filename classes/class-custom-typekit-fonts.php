@@ -47,6 +47,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts' ) ) {
 		 * @since 1.0.0
 		 */
 		public function options_setting() {
+
 			if ( isset( $_POST['custom-typekit-fonts-nonce'] ) && wp_verify_nonce( $_POST['custom-typekit-fonts-nonce'], 'custom-typekit-fonts' ) ) {
 
 				if ( isset( $_POST['custom-typekit-fonts-submitted'] ) ) {
@@ -55,8 +56,29 @@ if ( ! class_exists( 'Custom_Typekit_Fonts' ) ) {
 						$option = array();
 						$option['custom-typekit-font-id']  = sanitize_text_field( $_POST['custom-typekit-font-id'] );
 						$option['custom-typekit-font-details'] = $this->get_custom_typekit_details( $option['custom-typekit-font-id'] );
+
 						if ( empty( $option['custom-typekit-font-details'] ) ) {
 							$_POST['custom-typekit-font-notice'] = true;
+
+							// Get all stored typekit fonts.
+							// Search it in 'get_option( ASTRA_THEME_SETTINGS )'.
+							// If found set 'inherit'.
+							// Update 'ASTRA_THEME_SETTINGS'.
+							if ( defined( 'ASTRA_THEME_SETTINGS' ) ) {
+									// get astra options.
+									$options = get_option( ASTRA_THEME_SETTINGS );
+									$custom_typekit = get_option( 'custom-typekit-fonts' );
+								foreach ( $options as $key => $value ) {
+									$font_arr = explode( ',', $value );
+									$font_name = $font_arr[0];
+									if ( isset( $custom_typekit['custom-typekit-font-details'][ $font_name ] ) ) {
+										// set default inherit if custom font is deleted.
+										$options[ $key ] = 'inherit';
+									}
+								}
+								// update astra options.
+								update_option( ASTRA_THEME_SETTINGS, $options );
+							}
 						}
 
 						update_option( 'custom-typekit-fonts', $option );
@@ -82,12 +104,13 @@ if ( ! class_exists( 'Custom_Typekit_Fonts' ) ) {
 					'timeout'   => '30',
 				)
 			);
-			if ( 200 != $response['response']['code'] ) {
+
+			if ( is_wp_error( $response ) || wp_remote_retrieve_response_code( $response ) !== 200 ) {
 				return $typekit_info;
 			}
+				$data     = json_decode( wp_remote_retrieve_body( $response ), true );
 
-			$data     = json_decode( $response['body'], true );
-			$families = $data['kit']['families'];
+				$families = $data['kit']['families'];
 
 			foreach ( $families as $family ) :
 
@@ -118,9 +141,9 @@ if ( ! class_exists( 'Custom_Typekit_Fonts' ) ) {
 
 				endforeach;
 
-			endforeach;
+				endforeach;
 
-			return $typekit_info;
+				return $typekit_info;
 		}
 
 	}

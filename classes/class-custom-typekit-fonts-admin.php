@@ -65,23 +65,39 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Admin' ) ) :
 		 * @since 1.0.0
 		 */
 		public function set_custom_typekit_fonts_notice() {
+			// Notice for astra theme version.
+			if ( defined( 'ASTRA_THEME_VERSION' ) ) {
+				if ( version_compare( ASTRA_THEME_VERSION, '1.0.18', '<' ) ) {
+				?>
+				<div class="notice notice-error is-dismissible">
+					<p>
+					<?php echo esc_html__( 'Custom Typekit Fonts Plugin requires minimum 1.0.18 version of the Astra Theme.', 'custom-fonts' ); ?>
+					</p>
+				</div>
+			<?php
+				}
+			}
+
+			// Notice for Custom Typekit Fonts action.
 			if ( isset( $_POST['custom-typekit-fonts-nonce'] ) && wp_verify_nonce( $_POST['custom-typekit-fonts-nonce'], 'custom-typekit-fonts' ) ) {
 
 				if ( isset( $_POST['custom-typekit-fonts-submitted'] ) ) {
-					if ( sanitize_text_field( $_POST['custom-typekit-fonts-submitted'] ) == 'submitted' && current_user_can( 'manage_options' ) ) { ?>
+					if ( sanitize_text_field( $_POST['custom-typekit-fonts-submitted'] ) == 'submitted' && current_user_can( 'manage_options' ) ) {
+					?>
 
-					  <div class="updated">
 						<?php
 						// if Kit ID not validated show notice.
 						if ( isset( $_POST['custom-typekit-font-notice'] ) && $_POST['custom-typekit-font-notice'] ) {
 						?>
+							<div class="notice notice-error is-dismissible">
 								  <p><?php _e( 'Please Enter the Valid Kit ID to get the kit details.', 'custom-typekit-fonts' ); ?></p>
+							</div>
 							<?php } else { ?>
+							  <div class="notice notice-success is-dismissible">
 								<p><?php _e( 'Custom Typekit Fonts settings have been successfully saved.', 'custom-typekit-fonts' ); ?></p>
-						<?php } ?>
-					  </div>
-
-					<?php
+							</div>
+						<?php
+}
 					}
 				}
 			}
