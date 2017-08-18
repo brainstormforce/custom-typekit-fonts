@@ -83,43 +83,42 @@ if ( ! class_exists( 'Custom_Typekit_Fonts' ) ) {
 				)
 			);
 
-			if ( 200 != wp_remote_retrieve_response_code( $response ) ) {
-				return $typekit_info;
-			}
+			if ( ! is_wp_error( $response ) || wp_remote_retrieve_response_code( $response ) === 200 ) {
 
-			$data     = json_decode( $response['body'], true );
-			$families = $data['kit']['families'];
+				$data     = json_decode( wp_remote_retrieve_body( $response ), true );
+				$families = $data['kit']['families'];
 
-			foreach ( $families as $family ) :
+				foreach ( $families as $family ) :
 
-				$typekit_info[ $family['name'] ] = array(
-					'family'  => $family['name'],
-					'fallback'   => str_replace( '"', '', $family['css_stack'] ),
-					'weights' => array(),
-				);
+					$typekit_info[ $family['name'] ] = array(
+						'family'  => $family['name'],
+						'fallback'   => str_replace( '"', '', $family['css_stack'] ),
+						'weights' => array(),
+					);
 
-				foreach ( $family['variations'] as $variation ) :
+					foreach ( $family['variations'] as $variation ) :
 
-					$variations = str_split( $variation );
+						$variations = str_split( $variation );
 
-					switch ( $variations[0] ) {
-						case 'n':
-							$style = 'normal';
-							break;
-						default:
-							$style = 'normal';
-							break;
-					}
+						switch ( $variations[0] ) {
+							case 'n':
+								$style = 'normal';
+								break;
+							default:
+								$style = 'normal';
+								break;
+						}
 
-					$weight    = $variations[1] . '00';
+						$weight    = $variations[1] . '00';
 
-					if ( ! in_array( $weight, $typekit_info[ $family['name'] ]['weights'] ) ) {
-						$typekit_info[ $family['name'] ]['weights'][] = $weight;
-					}
+						if ( ! in_array( $weight, $typekit_info[ $family['name'] ]['weights'] ) ) {
+							$typekit_info[ $family['name'] ]['weights'][] = $weight;
+						}
+
+					endforeach;
 
 				endforeach;
-
-			endforeach;
+			}
 
 			return $typekit_info;
 		}
