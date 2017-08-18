@@ -53,11 +53,53 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Admin' ) ) :
 		 */
 		public function __construct() {
 			add_action( 'admin_menu', array( $this, 'register_custom_fonts_menu' ) );
-
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+			add_action( 'admin_notices', array( $this, 'set_custom_typekit_fonts_notice' ) );
 
-			add_action( 'wp_ajax_set_typekit_fonts',      array( $this, 'set_typekit_fonts' ) );
+		}
 
+		/**
+		 * Set admin notice
+		 *
+		 * @since 1.0.0
+		 */
+		public function set_custom_typekit_fonts_notice() {
+			// Notice for astra theme version.
+			if ( defined( 'ASTRA_THEME_VERSION' ) ) {
+				if ( version_compare( ASTRA_THEME_VERSION, '1.0.18', '<' ) ) {
+					?>
+					<div class="notice notice-error is-dismissible">
+						<p>
+							<?php echo esc_html__( 'Custom Typekit Fonts Plugin requires minimum 1.0.18 version of the Astra Theme.', 'custom-typekit-fonts' ); ?>
+						</p>
+					</div>
+					<?php
+				}
+			}
+
+			// Notice for Custom Typekit Fonts action.
+			if ( isset( $_POST['custom-typekit-fonts-nonce'] ) && wp_verify_nonce( $_POST['custom-typekit-fonts-nonce'], 'custom-typekit-fonts' ) ) {
+
+				if ( isset( $_POST['custom-typekit-fonts-submitted'] ) ) {
+					if ( sanitize_text_field( $_POST['custom-typekit-fonts-submitted'] ) == 'submitted' && current_user_can( 'manage_options' ) ) {
+						?>
+
+						<?php
+						// if Kit ID not validated show notice.
+						if ( isset( $_POST['custom-typekit-font-notice'] ) && $_POST['custom-typekit-font-notice'] ) {
+							?>
+							<div class="notice notice-error is-dismissible">
+								<p><?php _e( 'Please Enter the Valid Kit ID to get the kit details.', 'custom-typekit-fonts' ); ?></p>
+							</div>
+						<?php } else { ?>
+							<div class="notice notice-success is-dismissible">
+								<p><?php _e( 'Custom Typekit Fonts settings have been successfully saved.', 'custom-typekit-fonts' ); ?></p>
+							</div>
+							<?php
+}
+					}
+				}
+			}
 		}
 
 		/**
@@ -95,45 +137,6 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Admin' ) ) :
 		}
 
 		/**
-		 * Activate module
-		 */
-		function set_typekit_fonts() {
-
-			check_ajax_referer( 'custom-typekit-fonts-nonce', 'nonce' );
-
-			// sanitize multi dimension array.
-			$typekit_list = $_POST['kit_list'];
-			if ( is_array( $typekit_list ) ) {
-				foreach ( $lists as $list ) {
-					$list = esc_attr( $list );
-				}
-				unset( $list );
-			} else {
-				$typekit_list = esc_attr( $lists );
-			}
-
-			$typekit_array = array();
-			foreach ( $typekit_list as $fonts ) {
-				$family = $fonts['family'];
-				foreach ( $fonts as $key => $value ) {
-					if ( 'family' != $key ) {
-						$typekit_array[ $family ][ $key ] = $value;
-					}
-				}
-			}
-
-			$new_list = array(
-				'kit-id' => sanitize_text_field( $_POST['typekit_id'] ),
-				'kit-list' => $typekit_array,
-			);
-
-			update_option( 'custom-typekit-fonts', $new_list );
-
-			echo true;
-			die();
-		}
-
-		/**
 		 * Enqueue Admin Scripts
 		 *
 		 * @since 1.0.0
@@ -144,21 +147,9 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Admin' ) ) :
 
 			wp_enqueue_script( 'custom-typekit-fonts-js', CUSTOM_TYPEKIT_FONTS_URI . 'assets/js/custom-typekit-fonts.js', array( 'jquery-ui-tooltip' ), CUSTOM_TYPEKIT_FONTS_VER );
 
-			$options = array(
-				'ajax_nonce' => wp_create_nonce( 'custom-typekit-fonts-nonce' ),
-				'message' => array(
-					'active' => __( 'Active', 'custom-typekit-fonts' ),
-					'invalid_id' => __( 'Please make sure kit ID you entered is correct and try again.', 'custom-typekit-fonts' ),
-					'success' => __( 'Successfully updated the published Kit Details.', 'custom-typekit-fonts' ),
-				),
-			);
-
-			wp_localize_script( 'custom-typekit-fonts-js', 'typekitCustomFonts', $options );
-
 		}
 
 	}
-
 
 
 	/**

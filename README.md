@@ -26,11 +26,17 @@ Get more details from [Typekit](https://typekit.com/).
 
 ## Screenshots ##
 
-### 1. Add Typekit ID and get all published kit details ###
-![Add Typekit ID and get all published kit details](http://ps.w.org/custom-typekit-fonts/assets/screenshot-1.png)
+### 1. Enter your Typekit ID  ###
+![Enter your Typekit ID ](http://ps.w.org/custom-typekit-fonts/assets/screenshot-1.png)
 
-### 2. Select any Typekit font into the Customizer ###
-![Select any Typekit font into the Customizer](http://ps.w.org/custom-typekit-fonts/assets/screenshot-2.png)
+### 2. Get all published kit details from your Typekit ID ###
+![Get all published kit details from your Typekit ID](http://ps.w.org/custom-typekit-fonts/assets/screenshot-2.png)
+
+### 3. Select any Typekit font into the Customizer ###
+![Select any Typekit font into the Customizer](http://ps.w.org/custom-typekit-fonts/assets/screenshot-3.png)
+
+### 4. Get your Typekit ID ###
+![Get your Typekit ID](http://ps.w.org/custom-typekit-fonts/assets/screenshot-4.png)
 
 
 ## Changelog ##

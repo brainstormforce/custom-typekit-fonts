@@ -26,8 +26,10 @@ Get more details from [Typekit](https://typekit.com/).
 
 == Screenshots ==
 
-1. Add Typekit ID and get all published kit details
-2. Select any Typekit font into the Customizer
+1. Enter your Typekit ID 
+2. Get all published kit details from your Typekit ID
+3. Select any Typekit font into the Customizer
+4. Get your Typekit ID
 
 == Changelog ==
 
