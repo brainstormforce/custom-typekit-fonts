@@ -5,9 +5,9 @@
  * @package Custom_Typekit_Fonts
  */
 
-$kit_list = get_option( 'custom-typekit-fonts' );
+$kit_info = get_option( 'custom-typekit-fonts' );
 ?>
-<div class="wrap tco-plugin tco-typekit">
+<div class="wrap">
 	<h2><?php esc_html_e( 'Typekit', 'custom-typekit-fonts' ); ?></h2>
 	<div id="poststuff" >
 		<div id="post-body" class="metabox-holder columns-2 typekit-custom-fonts-wrap">
@@ -15,68 +15,78 @@ $kit_list = get_option( 'custom-typekit-fonts' );
 				<div class="meta-box-sortables ui-sortable">
 					<div class="postbox">
 					<h3 class="hndle"><span><?php esc_html_e( 'Settings', 'custom-typekit-fonts' ); ?></span></h3>
+					  <form name="custom-typekit-fonts-form" method="post" action="">
 						<table class="form-table typekit-custom-fonts-table">
-						<tbody>
-							<tr valign="top">
-								<th scope="row">
-								<label for="typekit_id"> <?php esc_html_e( 'Kit ID:', 'custom-typekit-fonts' ); ?>
+							<tbody>
+								<tr valign="top">
+									<th scope="row">
+									<label for="typekit_id"> <?php esc_html_e( 'Kit ID:', 'custom-typekit-fonts' ); ?>
+									</label>
+									 <i class="custom-typekit-fonts-help dashicons dashicons-editor-help" title="<?php echo esc_attr__( 'Please Enter the Valid Kit ID to get the kit details.', 'custom-typekit-fonts' ); ?>"></i>
+								</th>
+									<td><input style="display:<?php echo esc_attr( empty( $kit_info['custom-typekit-font-details'] ) ? 'inline-block' : 'none' ); ?>" type="text" name="custom-typekit-font-id" id="custom-typekit-font-id" value="<?php echo ( isset( $kit_info['custom-typekit-font-id'] ) ) ? esc_attr( $kit_info['custom-typekit-font-id'] ) : ''; ?>">
+									<?php if ( ! empty( $kit_info['custom-typekit-font-details'] ) ) : ?>
+										<a class="add-new-typekit button button-large" href="#"><?php echo esc_html__( 'Edit Kit ID', 'custom-typekit-fonts' ); ?></a>
+									<?php endif; ?>
+
 									<?php
-									if ( isset( $kit_list['kit-id'] ) ) {
+									$btn = __( 'Refresh', 'custom-typekit-fonts' );
+									if ( empty( $kit_info['custom-typekit-font-id'] ) || empty( $kit_info['custom-typekit-font-details'] ) ) {
+										$btn = __( 'Save', 'custom-typekit-fonts' );
+									}
 									?>
-										<span class="ctf-kit-active ctf-kit-notice"><?php echo esc_html__( 'Active!', 'custom-typekit-fonts' ); ?></span>
-									<?php } else { ?>
-											<span class="ctf-kit-not-active ctf-kit-notice"><?php echo esc_html__( 'Not Active!', 'custom-typekit-fonts' ); ?></span>
-									<?php } ?>
-								</label>
-								 <i class="custom-typekit-fonts-help dashicons dashicons-editor-help" title="<?php echo esc_attr__( 'Please Enter the Valid Kit ID to get the kit details.', 'custom-typekit-fonts' ); ?>"></i>
-							</th>
-								<td><input type="text" id="typekit_id" value="<?php echo ( isset( $kit_list['kit-id'] ) ) ? esc_attr( $kit_list['kit-id'] ) : ''; ?>">
-								<a class="add-new-typekit button" href="#"><?php echo esc_html__( 'Edit Kit ID', 'custom-typekit-fonts' ); ?></a>
-								<a class="get-typekit button" href="#"><?php echo esc_html__( 'Refresh', 'custom-typekit-fonts' ); ?></a>
-								</td>
-							</tr>
-							<tr class="custom-typekit-fonts-kit-info" valign="top">
-								<th scope="row"><label for="font-list"> <?php esc_html_e( 'Kit Details:', 'custom-typekit-fonts' ); ?> </label>
-								<i class="custom-typekit-fonts-help dashicons dashicons-editor-help" title="<?php echo esc_attr__( 'Make sure you have published the kit from Typekit. Only published information is displayed here.', 'custom-typekit-fonts' ); ?>"></i></th>
-								<td>
-										<table class="typekit-font-list">
-										<?php if ( ! empty( $kit_list ) ) { ?> 
-											<tr>
-												<th style="padding-left: 10px;">
-												<?php esc_html_e( 'Fonts', 'custom-typekit-fonts' ); ?> 
-												</th>
-												<th style="padding-left: 10px;">
-												<?php esc_html_e( 'Weights', 'custom-typekit-fonts' ); ?> 
-												</th>
-											</tr>
+									 <input id="submit" class="button button-large" type="submit"  value=" <?php echo esc_attr( $btn ); ?> ">
+									</td>
+								</tr>
+
+								<?php if ( ! empty( $kit_info['custom-typekit-font-details'] ) ) : ?>
+									<tr>
+										<th>
+											<label for="font-list"> <?php esc_html_e( 'Kit Details:', 'custom-typekit-fonts' ); ?> </label>
+											<i class="custom-typekit-fonts-help dashicons dashicons-editor-help" title="<?php echo esc_attr__( 'Make sure you have published the kit from Typekit. Only published information is displayed here.', 'custom-typekit-fonts' ); ?>"></i>
+										</th>
+										<td>
+											<table class="typekit-font-list">
+												<tr>
+													<th>
+														<?php esc_html_e( 'Fonts', 'custom-typekit-fonts' ); ?> 
+													</th>
+													<th>
+														<?php esc_html_e( 'Weights', 'custom-typekit-fonts' ); ?> 
+													</th>
+												</tr>
 												<?php
-												foreach ( $kit_list as $key => $fonts ) {
-													if ( 'kit-list' == $key ) {
-														foreach ( $fonts as $font => $properties ) {
-																echo '<tr>';
-																echo '<td>' . $font . '</td>';
-																echo '<td>';
-															$arr = array();
-															foreach ( $properties['weights'] as $property ) {
-																$arr[] = $property;
-															}
-															echo join( ',', $arr );
-															echo '</td>';
-															echo '</tr>';
-														}
-													}
-												}
-}
+
+												foreach ( $kit_info['custom-typekit-font-details'] as $font ) :
+
+													echo '<tr>';
+													echo '<td>' . $font['family'] . '</td>';
+													echo '<td>';
+													$comma_sep_arr = array();
+													foreach ( $font['weights'] as $weight ) :
+														$comma_sep_arr[] = $weight;
+														endforeach;
+													echo join( ', ', $comma_sep_arr );
+													echo '</td>';
+													echo '</tr>';
+
+													endforeach;
+
 												?>
 											</table>
-								</td>
-							</tr>
-						</tbody>
-					</table>
+										</td>
+									</tr>
+								<?php endif; ?>
+							</tbody>
+						</table>
+
+						<?php wp_nonce_field( 'custom-typekit-fonts', 'custom-typekit-fonts-nonce' ); ?>
+						<input name="custom-typekit-fonts-submitted" type="hidden" value="submitted">
+
+					</form>
 					</div>
 				</div>
 			</div>
-
 			<div id="postbox-container-1" class="postbox-container">
 				<div class="meta-box-sortables">
 					<div class="postbox">
@@ -109,7 +119,6 @@ $kit_list = get_option( 'custom-typekit-fonts' );
 						</div>
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</div>
