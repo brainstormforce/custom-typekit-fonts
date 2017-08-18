@@ -76,8 +76,8 @@ if ( ! class_exists( 'Custom_Typekit_Fonts' ) ) {
 										$options[ $key ] = 'inherit';
 									}
 								}
-									// update astra options.
-									update_option( ASTRA_THEME_SETTINGS, $options );
+								// update astra options.
+								update_option( ASTRA_THEME_SETTINGS, $options );
 							}
 						}
 
