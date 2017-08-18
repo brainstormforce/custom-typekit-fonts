@@ -71,7 +71,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Admin' ) ) :
 				?>
 				<div class="notice notice-error is-dismissible">
 					<p>
-					<?php echo esc_html__( 'Custom Typekit Fonts Plugin requires minimum 1.0.18 version of the Astra Theme.', 'custom-fonts' ); ?>
+					<?php echo esc_html__( 'Custom Typekit Fonts Plugin requires minimum 1.0.18 version of the Astra Theme.', 'custom-typekit-fonts' ); ?>
 					</p>
 				</div>
 			<?php
