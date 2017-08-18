@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Custom Typekit Fonts 1.0.0\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/custom-typekit-fonts\n"
-"POT-Creation-Date: 2017-08-18 10:02:07+00:00\n"
+"POT-Creation-Date: 2017-08-18 14:27:59+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -25,29 +25,23 @@ msgstr ""
 "X-Poedit-Bookmarks: \n"
 "X-Textdomain-Support: yes\n"
 
-#: classes/class-custom-typekit-fonts-admin.php:75
-#: templates/custom-typekit-fonts-options.php:26
+#: classes/class-custom-typekit-fonts-admin.php:73
+msgid ""
+"Custom Typekit Fonts Plugin requires minimum 1.0.18 version of the Astra "
+"Theme."
+msgstr ""
+
+#: classes/class-custom-typekit-fonts-admin.php:92
+#: templates/custom-typekit-fonts-options.php:27
 msgid "Please Enter the Valid Kit ID to get the kit details."
 msgstr ""
 
-#: classes/class-custom-typekit-fonts-admin.php:77
+#: classes/class-custom-typekit-fonts-admin.php:96
 msgid "Custom Typekit Fonts settings have been successfully saved."
 msgstr ""
 
 #. Plugin Name of the plugin/theme
 msgid "Custom Typekit Fonts"
-msgstr ""
-
-#: classes/class-custom-typekit-fonts-admin.php:172
-msgid "Active"
-msgstr ""
-
-#: classes/class-custom-typekit-fonts-admin.php:173
-msgid "Please make sure kit ID you entered is correct and try again."
-msgstr ""
-
-#: classes/class-custom-typekit-fonts-admin.php:174
-msgid "Successfully updated the published Kit Details."
 msgstr ""
 
 #: templates/custom-typekit-fonts-options.php:11
@@ -62,58 +56,58 @@ msgstr ""
 msgid "Kit ID:"
 msgstr ""
 
-#: templates/custom-typekit-fonts-options.php:30
+#: templates/custom-typekit-fonts-options.php:35
 msgid "Edit Kit ID"
 msgstr ""
 
-#: templates/custom-typekit-fonts-options.php:34
+#: templates/custom-typekit-fonts-options.php:39
 msgid "Refresh"
 msgstr ""
 
-#: templates/custom-typekit-fonts-options.php:36
+#: templates/custom-typekit-fonts-options.php:41
 msgid "Save"
 msgstr ""
 
-#: templates/custom-typekit-fonts-options.php:46
+#: templates/custom-typekit-fonts-options.php:53
 msgid "Kit Details:"
 msgstr ""
 
-#: templates/custom-typekit-fonts-options.php:47
+#: templates/custom-typekit-fonts-options.php:55
 msgid ""
 "Make sure you have published the kit from Typekit. Only published "
 "information is displayed here."
 msgstr ""
 
-#: templates/custom-typekit-fonts-options.php:53
+#: templates/custom-typekit-fonts-options.php:61
 msgid "Fonts"
 msgstr ""
 
-#: templates/custom-typekit-fonts-options.php:56
+#: templates/custom-typekit-fonts-options.php:64
 msgid "Weights"
 msgstr ""
 
-#: templates/custom-typekit-fonts-options.php:90
+#: templates/custom-typekit-fonts-options.php:102
 msgid "Help"
 msgstr ""
 
-#: templates/custom-typekit-fonts-options.php:96
+#: templates/custom-typekit-fonts-options.php:108
 #. translators: %1$s: typekit site url.
 msgid ""
 "You can get the Kit ID <a href=%1$s target=\"_blank\" >here</a> from your "
 "Typekit Account. <b>Kit ID</b> can be found next to the kit names."
 msgstr ""
 
-#: templates/custom-typekit-fonts-options.php:107
+#: templates/custom-typekit-fonts-options.php:119
 msgid "How it works?"
 msgstr ""
 
-#: templates/custom-typekit-fonts-options.php:110
+#: templates/custom-typekit-fonts-options.php:123
 msgid ""
 "Once you get the Kit Details, all the fonts will be listed in the "
 "customizer under typography"
 msgstr ""
 
-#: templates/custom-typekit-fonts-options.php:113
+#: templates/custom-typekit-fonts-options.php:127
 msgid "Go To Customizer"
 msgstr ""
 
