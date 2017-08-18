@@ -65,7 +65,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 		 * @since  1.0.0
 		 */
 		function typekit_embed_head() {
-			$kit_list = get_option( 'custom-typekit-fonts' );
+			$kit_info = get_option( 'custom-typekit-fonts' );
 			if ( empty( $kit_info['custom-typekit-font-details'] ) ) {
 				return;
 			}
@@ -73,7 +73,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 			<script>
 			  (function(d) {
 				var config = {
-				  kitId         : '<?php echo esc_js( $kit_list['custom-typekit-font-id'] ); ?>',
+				  kitId         : '<?php echo esc_js( $kit_info['custom-typekit-font-id'] ); ?>',
 				  scriptTimeout : 3000,
 				  async         : true
 				},
@@ -112,8 +112,8 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 				foreach ( $load_fonts  as $load_font_name => $load_font ) {
 					$font_arr = explode( ',', $load_font_name );
 					$font_name = $font_arr[0];
-
-					if ( array_key_exists( $font_name , $kit_list['custom-typekit-font-details'] ) ) {
+					// unset theme fonts to prevent the script call.
+					if ( isset( $kit_list['custom-typekit-font-details'][ $font_name ] ) ) {
 						unset( $load_fonts[ $load_font_name ] );
 					}
 				}

@@ -82,7 +82,8 @@ if ( ! class_exists( 'Custom_Typekit_Fonts' ) ) {
 					'timeout'   => '30',
 				)
 			);
-			if ( 200 != $response['response']['code'] ) {
+
+			if ( 200 != wp_remote_retrieve_response_code( $response ) ) {
 				return $typekit_info;
 			}
 
