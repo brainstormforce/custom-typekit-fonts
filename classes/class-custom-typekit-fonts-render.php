@@ -92,8 +92,11 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 		 */
 		function add_typekit_fonts( $custom_fonts ) {
 
-			$kit_list = get_option( 'custom-typekit-fonts' );
-			$new_custom_fonts = wp_parse_args( $kit_list['custom-typekit-font-details'], $custom_fonts );
+			$kit_info = get_option( 'custom-typekit-fonts' );
+			if ( empty( $kit_info['custom-typekit-font-details'] ) ) {
+				return $custom_fonts;
+			}
+			$new_custom_fonts = wp_parse_args( $kit_info['custom-typekit-font-details'], $custom_fonts );
 
 			return $new_custom_fonts;
 
@@ -108,7 +111,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 		public function render_fonts( $load_fonts ) {
 
 			$kit_list = get_option( 'custom-typekit-fonts' );
-			if ( isset( $kit_list['custom-typekit-font-details'] ) ) {
+			if ( ! empty( $kit_list['custom-typekit-font-details'] ) ) {
 				foreach ( $load_fonts  as $load_font_name => $load_font ) {
 					$font_arr = explode( ',', $load_font_name );
 					$font_name = $font_arr[0];
@@ -130,7 +133,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 		public function add_customizer_font_list( $value ) {
 
 			$kit_list = get_option( 'custom-typekit-fonts' );
-			if ( isset( $kit_list['custom-typekit-font-details'] ) ) {
+			if ( ! empty( $kit_list['custom-typekit-font-details'] ) ) {
 				echo '<optgroup label="Typekit">';
 				foreach ( $kit_list['custom-typekit-font-details'] as $font => $properties ) {
 					echo '<option value="' . esc_attr( $font ) . ',' . $properties['fallback'] . '" ' . selected( $font, $value , false ) . '>' . esc_attr( $font ) . '</option>';
