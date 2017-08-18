@@ -96,7 +96,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Admin' ) ) :
 								<p><?php _e( 'Custom Typekit Fonts settings have been successfully saved.', 'custom-typekit-fonts' ); ?></p>
 							</div>
 							<?php
-						}
+}
 					}
 				}
 			}

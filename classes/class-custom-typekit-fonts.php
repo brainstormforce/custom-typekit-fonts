@@ -110,7 +110,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts' ) ) {
 			if ( is_wp_error( $response ) || wp_remote_retrieve_response_code( $response ) !== 200 ) {
 				return $typekit_info;
 			}
-			
+
 			$data     = json_decode( wp_remote_retrieve_body( $response ), true );
 			$families = $data['kit']['families'];
 

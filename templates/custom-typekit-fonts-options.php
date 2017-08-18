@@ -42,7 +42,7 @@ $kit_info = get_option( 'custom-typekit-fonts' );
 										}
 										?>
 										<input id="submit" class="button button-large" type="submit"
-										       value=" <?php echo esc_attr( $btn ); ?> ">
+											   value=" <?php echo esc_attr( $btn ); ?> ">
 									</td>
 								</tr>
 
