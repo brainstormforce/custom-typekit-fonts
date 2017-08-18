@@ -57,8 +57,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 			add_action( 'astra_customizer_font_list', array( $this, 'add_customizer_font_list' ) );
 			add_action( 'astra_render_fonts', array( $this, 'render_fonts' ) );
 			add_filter( 'astra_custom_fonts', array( $this, 'add_typekit_fonts' ) );
-			
-			add_action( 'plugins_loaded',array( $this, 'load_textdomain' ) );
+			add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
 		}
 
 		/**
@@ -90,6 +89,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 		 * Add Custom Fonts list into
 		 *
 		 * @since  1.0.0
+		 *
 		 * @param array $custom_fonts custom fonts.
 		 */
 		function add_typekit_fonts( $custom_fonts ) {
@@ -108,14 +108,15 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 		 * Dequeue Render custom fonts
 		 *
 		 * @since 1.0.0
+		 *
 		 * @param array $load_fonts astra fonts.
 		 */
 		public function render_fonts( $load_fonts ) {
 
 			$kit_list = get_option( 'custom-typekit-fonts' );
 			if ( ! empty( $kit_list['custom-typekit-font-details'] ) ) {
-				foreach ( $load_fonts  as $load_font_name => $load_font ) {
-					$font_arr = explode( ',', $load_font_name );
+				foreach ( $load_fonts as $load_font_name => $load_font ) {
+					$font_arr  = explode( ',', $load_font_name );
 					$font_name = $font_arr[0];
 					// unset theme fonts to prevent the script call.
 					if ( isset( $kit_list['custom-typekit-font-details'][ $font_name ] ) ) {
@@ -123,6 +124,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 					}
 				}
 			}
+
 			return $load_fonts;
 		}
 
@@ -130,6 +132,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 		 * Add Custom Font list into Astra customizer.
 		 *
 		 * @since  1.0.0
+		 *
 		 * @param string $value selected font family.
 		 */
 		public function add_customizer_font_list( $value ) {
@@ -138,7 +141,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 			if ( ! empty( $kit_list['custom-typekit-font-details'] ) ) {
 				echo '<optgroup label="Typekit">';
 				foreach ( $kit_list['custom-typekit-font-details'] as $font => $properties ) {
-					echo '<option value="' . esc_attr( $font ) . ',' . $properties['fallback'] . '" ' . selected( $font, $value , false ) . '>' . esc_attr( $font ) . '</option>';
+					echo '<option value="' . esc_attr( $font ) . ',' . $properties['fallback'] . '" ' . selected( $font, $value, false ) . '>' . esc_attr( $font ) . '</option>';
 				}
 			}
 		}

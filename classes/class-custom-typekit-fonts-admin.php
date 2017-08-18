@@ -53,12 +53,11 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Admin' ) ) :
 		 */
 		public function __construct() {
 			add_action( 'admin_menu', array( $this, 'register_custom_fonts_menu' ) );
-
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
-
 			add_action( 'admin_notices', array( $this, 'set_custom_typekit_fonts_notice' ) );
 
 		}
+
 		/**
 		 * Set admin notice
 		 *
@@ -68,13 +67,13 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Admin' ) ) :
 			// Notice for astra theme version.
 			if ( defined( 'ASTRA_THEME_VERSION' ) ) {
 				if ( version_compare( ASTRA_THEME_VERSION, '1.0.18', '<' ) ) {
-				?>
-				<div class="notice notice-error is-dismissible">
-					<p>
-					<?php echo esc_html__( 'Custom Typekit Fonts Plugin requires minimum 1.0.18 version of the Astra Theme.', 'custom-typekit-fonts' ); ?>
-					</p>
-				</div>
-			<?php
+					?>
+					<div class="notice notice-error is-dismissible">
+						<p>
+							<?php echo esc_html__( 'Custom Typekit Fonts Plugin requires minimum 1.0.18 version of the Astra Theme.', 'custom-typekit-fonts' ); ?>
+						</p>
+					</div>
+					<?php
 				}
 			}
 
@@ -83,25 +82,26 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Admin' ) ) :
 
 				if ( isset( $_POST['custom-typekit-fonts-submitted'] ) ) {
 					if ( sanitize_text_field( $_POST['custom-typekit-fonts-submitted'] ) == 'submitted' && current_user_can( 'manage_options' ) ) {
-					?>
+						?>
 
 						<?php
 						// if Kit ID not validated show notice.
 						if ( isset( $_POST['custom-typekit-font-notice'] ) && $_POST['custom-typekit-font-notice'] ) {
-						?>
+							?>
 							<div class="notice notice-error is-dismissible">
-								  <p><?php _e( 'Please Enter the Valid Kit ID to get the kit details.', 'custom-typekit-fonts' ); ?></p>
+								<p><?php _e( 'Please Enter the Valid Kit ID to get the kit details.', 'custom-typekit-fonts' ); ?></p>
 							</div>
-							<?php } else { ?>
-							  <div class="notice notice-success is-dismissible">
+						<?php } else { ?>
+							<div class="notice notice-success is-dismissible">
 								<p><?php _e( 'Custom Typekit Fonts settings have been successfully saved.', 'custom-typekit-fonts' ); ?></p>
 							</div>
-						<?php
-}
+							<?php
+						}
 					}
 				}
 			}
 		}
+
 		/**
 		 * Register custom font menu
 		 *
@@ -150,7 +150,6 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Admin' ) ) :
 		}
 
 	}
-
 
 
 	/**
