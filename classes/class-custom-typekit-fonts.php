@@ -93,7 +93,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts' ) ) {
 
 				$typekit_info[ $family['name'] ] = array(
 					'family'  => $family['name'],
-					'fallback'   => str_replace('"', "", $family['css_stack']),
+					'fallback'   => str_replace( '"', '', $family['css_stack'] ),
 					'weights' => array(),
 				);
 

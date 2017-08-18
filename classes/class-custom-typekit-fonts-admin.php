@@ -71,8 +71,10 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Admin' ) ) :
 					if ( sanitize_text_field( $_POST['custom-typekit-fonts-submitted'] ) == 'submitted' && current_user_can( 'manage_options' ) ) { ?>
 
 					  <div class="updated">
-						<?php // if Kit ID not validated show notice.
-						if ( isset( $_POST['custom-typekit-font-notice'] ) && $_POST['custom-typekit-font-notice'] ) { ?>
+						<?php
+						// if Kit ID not validated show notice.
+						if ( isset( $_POST['custom-typekit-font-notice'] ) && $_POST['custom-typekit-font-notice'] ) {
+						?>
 								  <p><?php _e( 'Please Enter the Valid Kit ID to get the kit details.', 'custom-typekit-fonts' ); ?></p>
 							<?php } else { ?>
 								<p><?php _e( 'Custom Typekit Fonts settings have been successfully saved.', 'custom-typekit-fonts' ); ?></p>
