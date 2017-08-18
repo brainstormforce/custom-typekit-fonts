@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Custom Typekit Fonts 1.0.0\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/custom-typekit-fonts\n"
-"POT-Creation-Date: 2017-08-17 14:51:55+00:00\n"
+"POT-Creation-Date: 2017-08-18 10:02:07+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -25,19 +25,28 @@ msgstr ""
 "X-Poedit-Bookmarks: \n"
 "X-Textdomain-Support: yes\n"
 
+#: classes/class-custom-typekit-fonts-admin.php:75
+#: templates/custom-typekit-fonts-options.php:26
+msgid "Please Enter the Valid Kit ID to get the kit details."
+msgstr ""
+
+#: classes/class-custom-typekit-fonts-admin.php:77
+msgid "Custom Typekit Fonts settings have been successfully saved."
+msgstr ""
+
 #. Plugin Name of the plugin/theme
 msgid "Custom Typekit Fonts"
 msgstr ""
 
-#: classes/class-custom-typekit-fonts-admin.php:150
+#: classes/class-custom-typekit-fonts-admin.php:172
 msgid "Active"
 msgstr ""
 
-#: classes/class-custom-typekit-fonts-admin.php:151
+#: classes/class-custom-typekit-fonts-admin.php:173
 msgid "Please make sure kit ID you entered is correct and try again."
 msgstr ""
 
-#: classes/class-custom-typekit-fonts-admin.php:152
+#: classes/class-custom-typekit-fonts-admin.php:174
 msgid "Successfully updated the published Kit Details."
 msgstr ""
 
@@ -49,70 +58,62 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: templates/custom-typekit-fonts-options.php:22
+#: templates/custom-typekit-fonts-options.php:24
 msgid "Kit ID:"
 msgstr ""
 
-#: templates/custom-typekit-fonts-options.php:26
-msgid "Active!"
-msgstr ""
-
-#: templates/custom-typekit-fonts-options.php:28
-msgid "Not Active!"
-msgstr ""
-
-#: templates/custom-typekit-fonts-options.php:31
-msgid "Please Enter the Valid Kit ID to get the kit details."
-msgstr ""
-
-#: templates/custom-typekit-fonts-options.php:34
+#: templates/custom-typekit-fonts-options.php:30
 msgid "Edit Kit ID"
 msgstr ""
 
-#: templates/custom-typekit-fonts-options.php:35
+#: templates/custom-typekit-fonts-options.php:34
 msgid "Refresh"
 msgstr ""
 
-#: templates/custom-typekit-fonts-options.php:39
+#: templates/custom-typekit-fonts-options.php:36
+msgid "Save"
+msgstr ""
+
+#: templates/custom-typekit-fonts-options.php:46
 msgid "Kit Details:"
 msgstr ""
 
-#: templates/custom-typekit-fonts-options.php:40
+#: templates/custom-typekit-fonts-options.php:47
 msgid ""
 "Make sure you have published the kit from Typekit. Only published "
 "information is displayed here."
 msgstr ""
 
-#: templates/custom-typekit-fonts-options.php:46
+#: templates/custom-typekit-fonts-options.php:53
 msgid "Fonts"
 msgstr ""
 
-#: templates/custom-typekit-fonts-options.php:49
+#: templates/custom-typekit-fonts-options.php:56
 msgid "Weights"
 msgstr ""
 
-#: templates/custom-typekit-fonts-options.php:83
+#: templates/custom-typekit-fonts-options.php:90
 msgid "Help"
 msgstr ""
 
-#: templates/custom-typekit-fonts-options.php:89
+#: templates/custom-typekit-fonts-options.php:96
 #. translators: %1$s: typekit site url.
 msgid ""
 "You can get the Kit ID <a href=%1$s target=\"_blank\" >here</a> from your "
 "Typekit Account. <b>Kit ID</b> can be found next to the kit names."
 msgstr ""
 
-#: templates/custom-typekit-fonts-options.php:100
+#: templates/custom-typekit-fonts-options.php:107
 msgid "How it works?"
 msgstr ""
 
-#: templates/custom-typekit-fonts-options.php:103
+#: templates/custom-typekit-fonts-options.php:110
 msgid ""
 "Once you get the Kit Details, all the fonts will be listed in the "
 "customizer under typography"
 msgstr ""
 
-#: templates/custom-typekit-fonts-options.php:106
+#: templates/custom-typekit-fonts-options.php:113
 msgid "Go To Customizer"
 msgstr ""
 
