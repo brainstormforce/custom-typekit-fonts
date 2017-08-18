@@ -2,7 +2,7 @@
 /**
  * Plugin Name:     Custom Typekit Fonts
  * Plugin URI:      http://www.wpastra.com/
- * Description:     Custom Fonts allows you to add more fonts that extend formatting options in your site.
+ * Description:     Custom Typekit Fonts allows you to extends the fonts supports from the Typekit.
  * Author:          Brainstorm Force
  * Author URI:      http://www.brainstormforce.com
  * Text Domain:     custom-typekit-fonts
