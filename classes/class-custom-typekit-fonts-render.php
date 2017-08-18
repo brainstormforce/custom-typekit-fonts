@@ -57,7 +57,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 			add_action( 'astra_customizer_font_list', array( $this, 'add_customizer_font_list' ) );
 			add_action( 'astra_render_fonts', array( $this, 'render_fonts' ) );
 			add_filter( 'astra_custom_fonts', array( $this, 'add_typekit_fonts' ) );
-			
+
 			add_action( 'plugins_loaded',array( $this, 'load_textdomain' ) );
 		}
 
