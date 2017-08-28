@@ -59,7 +59,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts' ) ) {
 						$option['custom-typekit-font-details'] = $this->get_custom_typekit_details( $option['custom-typekit-font-id'] );
 
 						if ( empty( $option['custom-typekit-font-details'] ) ) {
-							$_POST['custom-typekit-font-notice'] = true;
+							$_POST['custom-typekit-empty-notice'] = true;
 
 							// Get all stored typekit fonts.
 							// Search it in 'get_option( ASTRA_THEME_SETTINGS )'.
@@ -70,11 +70,13 @@ if ( ! class_exists( 'Custom_Typekit_Fonts' ) ) {
 								$options        = get_option( ASTRA_THEME_SETTINGS );
 								$custom_typekit = get_option( 'custom-typekit-fonts' );
 								foreach ( $options as $key => $value ) {
-									$font_arr  = explode( ',', $value );
-									$font_name = $font_arr[0];
-									if ( isset( $custom_typekit['custom-typekit-font-details'][ $font_name ] ) ) {
-										// set default inherit if custom font is deleted.
-										$options[ $key ] = 'inherit';
+									if ( ! is_array( $value ) ) {
+										$font_arr  = explode( ',', $value );
+										$font_name = $font_arr[0];
+										if ( isset( $custom_typekit['custom-typekit-font-details'][ $font_name ] ) ) {
+											// set default inherit if custom font is deleted.
+											$options[ $key ] = 'inherit';
+										}
 									}
 								}
 								// update astra options.
@@ -108,6 +110,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts' ) ) {
 			);
 
 			if ( is_wp_error( $response ) || wp_remote_retrieve_response_code( $response ) !== 200 ) {
+				$_POST['custom-typekit-id-notice'] = true;
 				return $typekit_info;
 			}
 
