@@ -4,7 +4,7 @@
 **Tags:** custom typekit fonts, theme custom fonts, unlimited typekit custom fonts  
 **Requires at least:** 4.4  
 **Tested up to:** 4.8.1  
-**Stable tag:** 1.0.0  
+**Stable tag:** 1.0.1  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -40,6 +40,11 @@ Get more details from [Typekit](https://typekit.com/).
 
 
 ## Changelog ##
+
+v1.0.1
+* Custom Typekit Fonts wp admin menu renamed to Typekit Fonts.
+* Empty Kit notice added if there is not fonts in the Kit.
+* Php waring if there is no font list handled.
 
 v1.0.0
 * Initial release
