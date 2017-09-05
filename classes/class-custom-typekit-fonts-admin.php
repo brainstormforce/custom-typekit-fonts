@@ -75,6 +75,20 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Admin' ) ) :
 					</div>
 					<?php
 				}
+			} else {
+			?>
+				<div class="notice notice-error is-dismissible">
+					<p>
+						<?php
+						printf(
+							/* translators: 1: theme.php file*/
+							__( 'Astra Theme needs to be active for you to use currently installed "Custom TypeKit Fonts" plugin. <a href="%1$s">Install & Activate Now</a>', 'custom-typekit-fonts' ),
+							esc_url( admin_url( 'themes.php?theme=astra' ) )
+						);
+						?>
+					</p>
+				</div>
+			<?php
 			}
 
 			// Notice for Custom Typekit Fonts action.
@@ -85,13 +99,20 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Admin' ) ) :
 						?>
 
 						<?php
-						// if Kit ID not validated show notice.
-						if ( isset( $_POST['custom-typekit-font-notice'] ) && $_POST['custom-typekit-font-notice'] ) {
+						// Kit ID is not valid.
+						if ( isset( $_POST['custom-typekit-id-notice'] ) && $_POST['custom-typekit-id-notice'] ) {
 							?>
 							<div class="notice notice-error is-dismissible">
 								<p><?php _e( 'Please Enter the Valid Kit ID to get the kit details.', 'custom-typekit-fonts' ); ?></p>
 							</div>
-						<?php } else { ?>
+						<?php
+						} // Kit is empty.
+						elseif ( isset( $_POST['custom-typekit-empty-notice'] ) && $_POST['custom-typekit-empty-notice'] ) {
+						?>
+							<div class="notice notice-warning is-dismissible">
+								<p><?php _e( 'This Kit is empty. Please add some fonts in it.', 'custom-typekit-fonts' ); ?></p>
+							</div>
+							<?php } else { ?>
 							<div class="notice notice-success is-dismissible">
 								<p><?php _e( 'Custom Typekit Fonts settings have been successfully saved.', 'custom-typekit-fonts' ); ?></p>
 							</div>
@@ -109,8 +130,8 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Admin' ) ) :
 		 */
 		public function register_custom_fonts_menu() {
 			add_options_page(
-				__( 'Custom Typekit Fonts', 'custom-typekit-fonts' ),
-				__( 'Custom Typekit Fonts', 'custom-typekit-fonts' ),
+				__( 'Typekit Fonts', 'custom-typekit-fonts' ),
+				__( 'Typekit Fonts', 'custom-typekit-fonts' ),
 				'edit_theme_options',
 				'custom-typekit-fonts',
 				array( $this, 'typekit_options_page' )
@@ -118,8 +139,8 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Admin' ) ) :
 
 			add_submenu_page(
 				'themes.php',
-				__( 'Custom Typekit Fonts', 'custom-typekit-fonts' ),
-				__( 'Custom Typekit Fonts', 'custom-typekit-fonts' ),
+				__( 'Typekit Fonts', 'custom-typekit-fonts' ),
+				__( 'Typekit Fonts', 'custom-typekit-fonts' ),
 				'edit_theme_options',
 				'custom-typekit-fonts',
 				array( $this, 'typekit_options_page' )
