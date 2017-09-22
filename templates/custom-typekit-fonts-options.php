@@ -61,6 +61,9 @@ $kit_info = get_option( 'custom-typekit-fonts' );
 														<?php esc_html_e( 'Fonts', 'custom-typekit-fonts' ); ?>
 													</th>
 													<th>
+														<?php esc_html_e( 'Font Family', 'custom-typekit-fonts' ); ?>
+													</th>
+													<th>
 														<?php esc_html_e( 'Weights', 'custom-typekit-fonts' ); ?>
 													</th>
 												</tr>
@@ -70,6 +73,7 @@ $kit_info = get_option( 'custom-typekit-fonts' );
 
 													echo '<tr>';
 													echo '<td>' . $font['family'] . '</td>';
+													echo '<td>' . $font['fallback'] . '</td>';
 													echo '<td>';
 													$comma_sep_arr = array();
 													foreach ( $font['weights'] as $weight ) :

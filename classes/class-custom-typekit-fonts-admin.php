@@ -64,32 +64,6 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Admin' ) ) :
 		 * @since 1.0.0
 		 */
 		public function set_custom_typekit_fonts_notice() {
-			// Notice for astra theme version.
-			if ( defined( 'ASTRA_THEME_VERSION' ) ) {
-				if ( version_compare( ASTRA_THEME_VERSION, '1.0.18', '<' ) ) {
-					?>
-					<div class="notice notice-error is-dismissible">
-						<p>
-							<?php echo esc_html__( 'Custom Typekit Fonts Plugin requires minimum 1.0.18 version of the Astra Theme.', 'custom-typekit-fonts' ); ?>
-						</p>
-					</div>
-					<?php
-				}
-			} else {
-			?>
-				<div class="notice notice-error is-dismissible">
-					<p>
-						<?php
-						printf(
-							/* translators: 1: theme.php file*/
-							__( 'Astra Theme needs to be active for you to use currently installed "Custom TypeKit Fonts" plugin. <a href="%1$s">Install & Activate Now</a>', 'custom-typekit-fonts' ),
-							esc_url( admin_url( 'themes.php?theme=astra' ) )
-						);
-						?>
-					</p>
-				</div>
-			<?php
-			}
 
 			// Notice for Custom Typekit Fonts action.
 			if ( isset( $_POST['custom-typekit-fonts-nonce'] ) && wp_verify_nonce( $_POST['custom-typekit-fonts-nonce'], 'custom-typekit-fonts' ) ) {
