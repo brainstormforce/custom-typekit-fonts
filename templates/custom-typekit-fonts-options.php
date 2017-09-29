@@ -61,6 +61,9 @@ $kit_info = get_option( 'custom-typekit-fonts' );
 														<?php esc_html_e( 'Fonts', 'custom-typekit-fonts' ); ?>
 													</th>
 													<th>
+														<?php esc_html_e( 'Font Family', 'custom-typekit-fonts' ); ?>
+													</th>
+													<th>
 														<?php esc_html_e( 'Weights', 'custom-typekit-fonts' ); ?>
 													</th>
 												</tr>
@@ -70,6 +73,7 @@ $kit_info = get_option( 'custom-typekit-fonts' );
 
 													echo '<tr>';
 													echo '<td>' . $font['family'] . '</td>';
+													echo '<td>' . $font['fallback'] . '</td>';
 													echo '<td>';
 													$comma_sep_arr = array();
 													foreach ( $font['weights'] as $weight ) :
@@ -120,8 +124,14 @@ $kit_info = get_option( 'custom-typekit-fonts' );
 						</h3>
 						<div class="inside">
 							<div class="panel-inner">
-								<p> <?php esc_html_e( 'Once you get the Kit Details, all the fonts will be listed in the customizer under typography', 'custom-typekit-fonts' ); ?>
-
+								<p> 
+								<?php
+									/* translators: %1$s: Astra Theme url. */
+									printf( __( '1) Once you get the Kit Details, all the fonts will be listed in the customizer under typography for only <a href="%1$s" target="_blank" rel="noopener"> Astra </a> WordPress Theme users', 'custom-typekit-fonts' ), 'https://wpastra.com' );
+									?>
+								</p>
+								<p>
+									<?php esc_html_e( '2) Select the Font Family and start using it into your custom CSS.', 'custom-typekit-fonts' ); ?>
 								</p>
 								<a class="submit button button-hero"
 								   href="<?php echo esc_url( admin_url( 'customize.php' ) ); ?>"><?php esc_html_e( 'Go To Customizer', 'custom-typekit-fonts' ); ?></a>
