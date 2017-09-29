@@ -40,6 +40,8 @@ if ( ! class_exists( 'Custom_Typekit_Fonts' ) ) {
 			require_once CUSTOM_TYPEKIT_FONTS_DIR . 'classes/class-custom-typekit-fonts-render.php';
 
 			add_action( 'init', array( $this, 'options_setting' ) );
+
+			$this->load_files();
 		}
 
 		/**
@@ -149,6 +151,19 @@ if ( ! class_exists( 'Custom_Typekit_Fonts' ) ) {
 			endforeach;
 
 			return $typekit_info;
+		}
+
+		/**
+		 * Loads classes and includes.
+		 *
+		 * @since 1.0.2
+		 * @return void
+		 */
+		private function load_files() {
+
+			/* Classes */
+
+			require_once CUSTOM_TYPEKIT_FONTS_DIR . 'classes/class-typekit-fonts-white-label.php';
 		}
 
 	}

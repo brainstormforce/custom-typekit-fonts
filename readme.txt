@@ -41,6 +41,7 @@ Get more details from [Typekit](https://typekit.com/).
 
 v1.0.2
 * Typekit fonts support added for all themes.
+* White Label support added from the [Astra Pro](https://wpastra.com/pro/) plugin.
 
 v1.0.1
 * Custom Typekit Fonts wp admin menu renamed to Typekit Fonts.
