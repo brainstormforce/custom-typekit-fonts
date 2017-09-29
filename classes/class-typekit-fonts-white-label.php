@@ -57,6 +57,7 @@ if ( ! class_exists( 'Typekit_Fonts_White_Label' ) ) :
 			add_filter( 'astra_addon_branding_options'              , __CLASS__ . '::settings' );
 			add_action( 'astra_pro_white_label_add_form'            , __CLASS__ . '::add_white_lavel_form' );
 
+			add_filter( 'custom_typekit_fonts_menu_title', array( $this, 'white_label_custom_typekit_fonts_title' ) );
 			if ( is_admin() ) {
 				// Display the link with the plugin meta.
 				add_filter( 'plugin_row_meta', array( $this, 'plugin_links' ), 10, 4 );
@@ -105,6 +106,24 @@ if ( ! class_exists( 'Typekit_Fonts_White_Label' ) ) :
 			}
 
 			return $plugins;
+		}
+
+		/**
+		 * White labels the Custom Typekit fonts menu title
+		 *
+		 * @since 1.0.2
+		 * @param string $title  custom typekit fonts menu title.
+		 * @return string $title updated custom typekit fonts menu
+		 */
+		function white_label_custom_typekit_fonts_title( $title ) {
+
+			if ( is_callable( 'Astra_Ext_White_Label_Markup::get_white_label' ) ) {
+				$name        = Astra_Ext_White_Label_Markup::get_white_label( 'custom-typekit-fonts', 'name' );
+				if ( ! empty( $name ) ) {
+					$title = $name;
+				}
+			}
+			return $title;
 		}
 
 		/**
