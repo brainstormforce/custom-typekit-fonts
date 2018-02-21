@@ -24,7 +24,7 @@ $kit_info = get_option( 'custom-typekit-fonts' );
 											for="typekit_id"> <?php esc_html_e( 'Kit ID:', 'custom-typekit-fonts' ); ?>
 										</label>
 										<i class="custom-typekit-fonts-help dashicons dashicons-editor-help"
-										   title="<?php echo esc_attr__( 'Please Enter the Valid Kit ID to get the kit details.', 'custom-typekit-fonts' ); ?>"></i>
+										title="<?php echo esc_attr__( 'Please Enter the Valid Kit ID to get the kit details.', 'custom-typekit-fonts' ); ?>"></i>
 									</th>
 									<td><input
 											style="display:<?php echo esc_attr( empty( $kit_info['custom-typekit-font-details'] ) ? 'inline-block' : 'none' ); ?>"
@@ -32,7 +32,7 @@ $kit_info = get_option( 'custom-typekit-fonts' );
 											value="<?php echo ( isset( $kit_info['custom-typekit-font-id'] ) ) ? esc_attr( $kit_info['custom-typekit-font-id'] ) : ''; ?>">
 										<?php if ( ! empty( $kit_info['custom-typekit-font-details'] ) ) : ?>
 											<a class="add-new-typekit button button-large"
-											   href="#"><?php echo esc_html__( 'Edit Kit ID', 'custom-typekit-fonts' ); ?></a>
+											href="#"><?php echo esc_html__( 'Edit Kit ID', 'custom-typekit-fonts' ); ?></a>
 										<?php endif; ?>
 
 										<?php
@@ -42,7 +42,7 @@ $kit_info = get_option( 'custom-typekit-fonts' );
 										}
 										?>
 										<input id="submit" class="button button-large" type="submit"
-											   value=" <?php echo esc_attr( $btn ); ?> ">
+											value=" <?php echo esc_attr( $btn ); ?> ">
 									</td>
 								</tr>
 
@@ -52,7 +52,7 @@ $kit_info = get_option( 'custom-typekit-fonts' );
 											<label
 												for="font-list"> <?php esc_html_e( 'Kit Details:', 'custom-typekit-fonts' ); ?> </label>
 											<i class="custom-typekit-fonts-help dashicons dashicons-editor-help"
-											   title="<?php echo esc_attr__( 'Make sure you have published the kit from Typekit. Only published information is displayed here.', 'custom-typekit-fonts' ); ?>"></i>
+											title="<?php echo esc_attr__( 'Make sure you have published the kit from Typekit. Only published information is displayed here.', 'custom-typekit-fonts' ); ?>"></i>
 										</th>
 										<td>
 											<table class="typekit-font-list">
@@ -134,7 +134,7 @@ $kit_info = get_option( 'custom-typekit-fonts' );
 									<?php esc_html_e( '2) Select the Font Family and start using it into your custom CSS.', 'custom-typekit-fonts' ); ?>
 								</p>
 								<a class="submit button button-hero"
-								   href="<?php echo esc_url( admin_url( 'customize.php' ) ); ?>"><?php esc_html_e( 'Go To Customizer', 'custom-typekit-fonts' ); ?></a>
+								href="<?php echo esc_url( admin_url( 'customize.php' ) ); ?>"><?php esc_html_e( 'Go To Customizer', 'custom-typekit-fonts' ); ?></a>
 
 							</div>
 						</div>

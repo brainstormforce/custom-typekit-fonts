@@ -42,6 +42,9 @@ if ( ! class_exists( 'Custom_Typekit_Fonts' ) ) {
 			add_action( 'init', array( $this, 'options_setting' ) );
 
 			$this->load_files();
+
+			// Load textdomain.
+			add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
 		}
 
 		/**
@@ -164,6 +167,15 @@ if ( ! class_exists( 'Custom_Typekit_Fonts' ) ) {
 			/* Classes */
 
 			require_once CUSTOM_TYPEKIT_FONTS_DIR . 'classes/class-typekit-fonts-white-label.php';
+		}
+
+		/**
+		 * Loads textdomain for the plugin.
+		 *
+		 * @since 1.0.0
+		 */
+		function load_textdomain() {
+			load_plugin_textdomain( 'custom-typekit-fonts' );
 		}
 
 	}
