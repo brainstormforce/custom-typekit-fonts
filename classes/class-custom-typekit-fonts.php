@@ -184,4 +184,4 @@ if ( ! class_exists( 'Custom_Typekit_Fonts' ) ) {
 	 *  Kicking this off by calling 'get_instance()' method
 	 */
 	Custom_Typekit_Fonts::get_instance();
-}// End if().
+}
