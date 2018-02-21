@@ -45,14 +45,14 @@ Get more details from [Typekit](https://typekit.com/).
 ### 4. Select any Typekit font from Astra Theme Customizer ###
 ![Select any Typekit font from Astra Theme Customizer](http://ps.w.org/custom-typekit-fonts/assets/screenshot-4.png)
 
-### 5. Select any Typekit font from Beaver Builder Theme Customizer ###
-![Select any Typekit font from Beaver Builder Theme Customizer](http://ps.w.org/custom-typekit-fonts/assets/screenshot-5.png)
+### 5. Select any Typekit font from Elementor ###
+![Select any Typekit font from Elementor](http://ps.w.org/custom-typekit-fonts/assets/screenshot-5.png)
 
-### 6. Select any Typekit font from Elementor ###
-![Select any Typekit font from Elementor](http://ps.w.org/custom-typekit-fonts/assets/screenshot-6.png)
+### 6. Select any Typekit font from Beaver Builder ###
+![Select any Typekit font from Beaver Builder](http://ps.w.org/custom-typekit-fonts/assets/screenshot-6.png)
 
-### 7. Select any Typekit font from Beaver Builder ###
-![Select any Typekit font from Beaver Builder](http://ps.w.org/custom-typekit-fonts/assets/screenshot-7.png)
+### 7. Select any Typekit font from Beaver Builder Theme Customizer ###
+![Select any Typekit font from Beaver Builder Theme Customizer](http://ps.w.org/custom-typekit-fonts/assets/screenshot-7.png)
 
 
 ## Changelog ##

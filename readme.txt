@@ -37,9 +37,9 @@ Get more details from [Typekit](https://typekit.com/).
 2. Enter your Typekit ID 
 3. Get all published kit details from your Typekit ID
 4. Select any Typekit font from Astra Theme Customizer
-5. Select any Typekit font from Beaver Builder Theme Customizer
-6. Select any Typekit font from Elementor
-7. Select any Typekit font from Beaver Builder
+5. Select any Typekit font from Elementor
+6. Select any Typekit font from Beaver Builder
+7. Select any Typekit font from Beaver Builder Theme Customizer
 
 == Changelog ==
 
