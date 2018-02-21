@@ -12,16 +12,22 @@ Custom Typekit Fonts allows you to extends the fonts supports from the Typekit.
 
 == Description ==
 
-Custom Typekit Fonts allows you to extends the fonts supports from the Typekit.
+This plugin helps you easily embed Typekit fonts easily in your WordPress website.
 
-You don't need to include any code to get the Typekit Fonts.
-You can directly add Typekit ID and start using the fonts of your choice.
-[Astra](https://wpastra.com) WordPress Theme users can select any published kit font into the customizer.
-For Beaver Builder Theme, Beaver Builder and Elementor users the Custom Typekit Fonts list added to the existing font lists.
+Currently it works with:
 
-All other users can also select Font Family from Appearance -> Typekit Fonts and start using it into your custom CSS.
+* <a href="https://wpastra.com/?utm_source=wp-repo&utm_campaign=custom-typekit-fonts&utm_medium=description">Astra Theme</a>
+* <a href="https://www.wpbeaverbuilder.com/?fla=713">Beaver Builder Theme</a>
+* <a href="https://www.wpbeaverbuilder.com/?fla=713">Beaver Builder Plugin</a>
+* <a href="https://elementor.com/?ref=1352">Elementor Page Builder</a>
 
-Get more details from [Typekit](https://typekit.com/).
+How does it work?
+
+1. Install the plugin
+2. Enter the Kit ID that you create in Typekit
+3. And done. You will be able to see the fonts added in the settings of Astra / Beaver Builder / Elementor. Please refer screenshots.
+
+If you're not using any of the supported plugins and theme, you can write the custom CSS to apply the fonts.
 
 == Installation ==
 
