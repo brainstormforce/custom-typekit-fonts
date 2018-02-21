@@ -57,7 +57,11 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 			add_action( 'astra_customizer_font_list', array( $this, 'add_customizer_font_list' ) );
 			add_action( 'astra_render_fonts', array( $this, 'render_fonts' ) );
 			add_filter( 'astra_custom_fonts', array( $this, 'add_typekit_fonts' ) );
-			add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
+			// Beaver builder theme customizer, beaver buidler page builder.
+			add_filter( 'fl_theme_system_fonts', array( $this, 'bb_custom_fonts' ) );
+			add_filter( 'fl_builder_font_families_system', array( $this, 'bb_custom_fonts' ) );
+			// Elementor page builder.
+			add_action( 'elementor/controls/controls_registered', array( $this, 'elementor_custom_fonts' ), 10, 1 );
 		}
 
 		/**
@@ -71,15 +75,15 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 				return;
 			}
 			?>
-			<script>
-			  (function(d) {
+			<script type="text/javascript">
+			(function(d) {
 				var config = {
-				  kitId         : '<?php echo esc_js( $kit_info['custom-typekit-font-id'] ); ?>',
-				  scriptTimeout : 3000,
-				  async         : true
+				kitId         : '<?php echo esc_js( $kit_info['custom-typekit-font-id'] ); ?>',
+				scriptTimeout : 3000,
+				async         : true
 				},
 				h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
-			  })(document);
+			})(document);
 			</script>
 
 			<?php
@@ -147,12 +151,47 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 		}
 
 		/**
-		 * Loads textdomain for the plugin.
+		 * Add Custom Font list to BB theme and BB Page Builder
 		 *
-		 * @since 1.0.0
+		 * @since  1.0.3
+		 * @param array $bb_fonts font families added by bb.
 		 */
-		function load_textdomain() {
-			load_plugin_textdomain( 'custom-typekit-fonts' );
+		function bb_custom_fonts( $bb_fonts ) {
+
+			$kit_list     = get_option( 'custom-typekit-fonts' );
+			$fonts        = $kit_list['custom-typekit-font-details'];
+			$custom_fonts = array();
+			if ( ! empty( $fonts ) ) :
+				foreach ( $fonts as $font_family_name => $fonts_url ) :
+					$custom_fonts[ $font_family_name ] = array(
+						'fallback' => 'Verdana, Arial, sans-serif',
+						'weights'  => array( '100', '200', '300', '400', '500', '600', '700', '800', '900' ),
+					);
+				endforeach;
+			endif;
+
+			return array_merge( $bb_fonts, $custom_fonts );
+		}
+
+		/**
+		 * Add Custom Font list to Elementor Page Builder
+		 *
+		 * @since  1.0.3
+		 * @param array $controls_registry font families added by elementor.
+		 */
+		function elementor_custom_fonts( $controls_registry ) {
+			$kit_list        = get_option( 'custom-typekit-fonts' );
+			$fonts           = $kit_list['custom-typekit-font-details'];
+			$fonts_elementor = array( 'Use Any Fonts' => array() );
+			if ( ! empty( $fonts ) ) :
+				foreach ( $fonts as $font_family_name => $fonts_url ) :
+					$fonts_elementor[ $font_family_name ] = 'system';
+				endforeach;
+			endif;
+
+			$fonts     = $controls_registry->get_control( 'font' )->get_settings( 'options' );
+			$new_fonts = array_merge( $fonts, $fonts_elementor );
+			$controls_registry->get_control( 'font' )->set_settings( 'options', $new_fonts );
 		}
 	}
 
