@@ -58,7 +58,7 @@ Get more details from [Typekit](https://typekit.com/).
 ## Changelog ##
 
 v1.0.4
-* Fixed: Added Elementor global fonts support.
+* Fixed: Added Fonts in separate group for Elementor fonts & global fonts selection.
 
 v1.0.3
 * New: Added compatibility with Beaver Builder Theme, Beaver Builder Plugin and Elementor.
