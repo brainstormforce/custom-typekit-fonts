@@ -85,7 +85,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 		 * @return Array              Modified font groups with newly added font group.
 		 */
 		public function elementor_group( $font_groups ) {
-			$new_group[ self::$font_base ] = __( 'Typekit Donts', 'custom-typekit-fonts' );
+			$new_group[ self::$font_base ] = __( 'Typekit Fonts', 'custom-typekit-fonts' );
 			$font_groups                   = $new_group + $font_groups;
 
 			return $font_groups;

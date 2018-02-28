@@ -4,7 +4,7 @@ Donate link: https://wpastra.com/
 Tags: custom typekit fonts, theme custom fonts, unlimited typekit custom fonts
 Requires at least: 4.4
 Tested up to: 4.9.4
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -42,6 +42,9 @@ Get more details from [Typekit](https://typekit.com/).
 7. Select any Typekit font from Beaver Builder
 
 == Changelog ==
+
+v1.0.4
+* Fixed: Added Elementor global fonts support.
 
 v1.0.3
 * New: Added compatibility with Beaver Builder Theme, Beaver Builder Plugin and Elementor.

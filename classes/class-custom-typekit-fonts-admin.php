@@ -106,14 +106,14 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Admin' ) ) :
 
 			$title = apply_filters( 'custom_typekit_fonts_menu_title', __( 'Typekit Fonts', 'custom-typekit-fonts' ) );
 
-			add_submenu_page(
-				'themes.php',
-				$title,
-				$title,
-				'edit_theme_options',
-				'custom-typekit-fonts',
-				array( $this, 'typekit_options_page' )
-			);
+			// add_submenu_page(
+			// 	'themes.php',
+			// 	$title,
+			// 	$title,
+			// 	'edit_theme_options',
+			// 	'custom-typekit-fonts',
+			// 	array( $this, 'typekit_options_page' )
+			// );
 		}
 
 		/**
