@@ -105,13 +105,6 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Admin' ) ) :
 		public function register_custom_fonts_menu() {
 
 			$title = apply_filters( 'custom_typekit_fonts_menu_title', __( 'Typekit Fonts', 'custom-typekit-fonts' ) );
-			add_options_page(
-				$title,
-				$title,
-				'edit_theme_options',
-				'custom-typekit-fonts',
-				array( $this, 'typekit_options_page' )
-			);
 
 			add_submenu_page(
 				'themes.php',
