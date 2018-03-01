@@ -122,15 +122,17 @@ if ( ! class_exists( 'Custom_Typekit_Fonts' ) ) {
 			$data     = json_decode( wp_remote_retrieve_body( $response ), true );
 			$families = $data['kit']['families'];
 
-			foreach ( $families as $family ) :
+			foreach ( $families as $family ) {
 
-				$typekit_info[ $family['name'] ] = array(
-					'family'   => $family['name'],
+				$family_name = str_replace( ' ', '-', $family['name'] );
+
+				$typekit_info[ $family_name ] = array(
+					'family'   => $family_name,
 					'fallback' => str_replace( '"', '', $family['css_stack'] ),
 					'weights'  => array(),
 				);
 
-				foreach ( $family['variations'] as $variation ) :
+				foreach ( $family['variations'] as $variation ) {
 
 					$variations = str_split( $variation );
 
@@ -145,13 +147,11 @@ if ( ! class_exists( 'Custom_Typekit_Fonts' ) ) {
 
 					$weight = $variations[1] . '00';
 
-					if ( ! in_array( $weight, $typekit_info[ $family['name'] ]['weights'] ) ) {
-						$typekit_info[ $family['name'] ]['weights'][] = $weight;
+					if ( ! in_array( $weight, $typekit_info[ $family_name ]['weights'] ) ) {
+						$typekit_info[ $family_name ]['weights'][] = $weight;
 					}
-
-				endforeach;
-
-			endforeach;
+				}
+			}
 
 			return $typekit_info;
 		}
