@@ -99,7 +99,6 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 		 */
 		public function add_elementor_fonts( $fonts ) {
 
-			$all_fonts = Bsf_Custom_Fonts_Taxonomy::get_fonts();
 			$kit_list  = get_option( 'custom-typekit-fonts' );
 			$fonts     = $kit_list['custom-typekit-font-details'];
 
