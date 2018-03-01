@@ -99,8 +99,8 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 		 */
 		public function add_elementor_fonts( $fonts ) {
 
-			$kit_list  = get_option( 'custom-typekit-fonts' );
-			$fonts     = $kit_list['custom-typekit-font-details'];
+			$kit_list = get_option( 'custom-typekit-fonts' );
+			$fonts    = $kit_list['custom-typekit-font-details'];
 
 			if ( ! empty( $fonts ) ) {
 				foreach ( $fonts as $font_family_name => $fonts_url ) {
