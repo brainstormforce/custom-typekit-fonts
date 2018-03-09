@@ -133,6 +133,10 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Admin' ) ) :
 		 */
 		public function enqueue_scripts() {
 
+			if ( 'appearance_page_custom-typekit-fonts' !== get_current_screen()->id ) {
+				return;
+			}
+
 			wp_enqueue_style( 'custom-typekit-fonts-css', CUSTOM_TYPEKIT_FONTS_URI . 'assets/css/custom-typekit-fonts.css', array(), CUSTOM_TYPEKIT_FONTS_VER );
 
 			wp_enqueue_script( 'custom-typekit-fonts-js', CUSTOM_TYPEKIT_FONTS_URI . 'assets/js/custom-typekit-fonts.js', array( 'jquery-ui-tooltip' ), CUSTOM_TYPEKIT_FONTS_VER );
