@@ -4,7 +4,7 @@
 **Tags:** custom typekit fonts, theme custom fonts, unlimited typekit custom fonts  
 **Requires at least:** 4.4  
 **Tested up to:** 4.9.4  
-**Stable tag:** 1.0.5  
+**Stable tag:** 1.0.6  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -62,6 +62,9 @@ If you're not using any of the supported plugins and theme, you can write the cu
 
 
 ## Changelog ##
+
+v1.0.6
+* Fixed: Update font name to correct font family to be rendered correctly for all the fonts. 
 
 v1.0.5
 * Fixed: Fatal error: Uncaught Error: Class ‘Bsf_Custom_Fonts_Taxonomy’ not found
