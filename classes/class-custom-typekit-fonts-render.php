@@ -101,14 +101,14 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 
 			$kit_list  = get_option( 'custom-typekit-fonts' );
 			$all_fonts = $kit_list['custom-typekit-font-details'];
-
+			$custom_fonts = array();
 			if ( ! empty( $all_fonts ) ) {
 				foreach ( $all_fonts as $font_family_name => $fonts_url ) {
-					$fonts[ $font_family_name ] = self::$font_base;
+					$custom_fonts[ $font_family_name ] = self::$font_base;
 				}
 			}
 
-			return $fonts;
+			return array_merge( $fonts, $custom_fonts );
 		}
 
 		/**
