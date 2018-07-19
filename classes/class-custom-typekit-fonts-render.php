@@ -87,7 +87,6 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 		public function elementor_group( $font_groups ) {
 			$new_group[ self::$font_base ] = __( 'Typekit Fonts', 'custom-typekit-fonts' );
 			$font_groups                   = $new_group + $font_groups;
-
 			return $font_groups;
 		}
 
@@ -104,10 +103,9 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 			$custom_fonts = array();
 			if ( ! empty( $all_fonts ) ) {
 				foreach ( $all_fonts as $font_family_name => $fonts_url ) {
-					$custom_fonts[ $font_family_name ] = self::$font_base;
+					$custom_fonts[ strtolower(str_replace( " ", "-", $font_family_name ) ) ] = self::$font_base;
 				}
 			}
-
 			return array_merge( $fonts, $custom_fonts );
 		}
 
