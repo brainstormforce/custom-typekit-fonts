@@ -128,7 +128,7 @@ $kit_info = get_option( 'custom-typekit-fonts' );
 								<?php
 									/* translators: %1$s: Astra Theme url. */
 									printf( __( '1) Once you get the Kit Details, all the fonts will be listed in the customizer under typography for only <a href="%1$s" target="_blank" rel="noopener"> Astra </a> WordPress Theme users', 'custom-typekit-fonts' ), 'https://wpastra.com' );
-									?>
+								?>
 								</p>
 								<p>
 									<?php esc_html_e( '2) Select the Font Family and start using it into your custom CSS.', 'custom-typekit-fonts' ); ?>
