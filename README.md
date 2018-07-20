@@ -1,9 +1,9 @@
 # Custom Typekit Fonts #
-**Contributors:** brainstormforce, rushijagani  
+**Contributors:** [brainstormforce](https://profiles.wordpress.org/brainstormforce), [rushijagani](https://profiles.wordpress.org/rushijagani)  
 **Donate link:** https://wpastra.com/  
 **Tags:** custom typekit fonts, theme custom fonts, unlimited typekit custom fonts  
 **Requires at least:** 4.4  
-**Tested up to:** 4.9.4  
+**Tested up to:** 4.9.7  
 **Stable tag:** 1.0.6  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
@@ -39,32 +39,19 @@ If you're not using any of the supported plugins and theme, you can write the cu
 
 ## Screenshots ##
 
-### 1. Get your Typekit ID ###
-![Get your Typekit ID](http://ps.w.org/custom-typekit-fonts/assets/screenshot-1.png)
-
-### 2. Enter your Typekit ID  ###
-![Enter your Typekit ID ](http://ps.w.org/custom-typekit-fonts/assets/screenshot-2.png)
-
-### 3. Get all published kit details from your Typekit ID ###
-![Get all published kit details from your Typekit ID](http://ps.w.org/custom-typekit-fonts/assets/screenshot-3.png)
-
-### 4. Select any Typekit font from Astra Theme Customizer ###
-![Select any Typekit font from Astra Theme Customizer](http://ps.w.org/custom-typekit-fonts/assets/screenshot-4.png)
-
-### 5. Select any Typekit font from Elementor ###
-![Select any Typekit font from Elementor](http://ps.w.org/custom-typekit-fonts/assets/screenshot-5.png)
-
-### 6. Select any Typekit font from Beaver Builder ###
-![Select any Typekit font from Beaver Builder](http://ps.w.org/custom-typekit-fonts/assets/screenshot-6.png)
-
-### 7. Select any Typekit font from Beaver Builder Theme Customizer ###
-![Select any Typekit font from Beaver Builder Theme Customizer](http://ps.w.org/custom-typekit-fonts/assets/screenshot-7.png)
-
+1. Get your Typekit ID
+2. Enter your Typekit ID 
+3. Get all published kit details from your Typekit ID
+4. Select any Typekit font from Astra Theme Customizer
+5. Select any Typekit font from Elementor
+6. Select any Typekit font from Beaver Builder
+7. Select any Typekit font from Beaver Builder Theme Customizer
 
 ## Changelog ##
 
 v1.0.6
-* Fixed: Update font name to correct font family to be rendered correctly for all the fonts. 
+* Fixed: Update font name to correct font family to be rendered correctly for all the fonts.
+* Fixed: Typekit fonts not rendered ccorrectly in Beaver Builder and Elementor settings.
 
 v1.0.5
 * Fixed: Fatal error: Uncaught Error: Class ‘Bsf_Custom_Fonts_Taxonomy’ not found
