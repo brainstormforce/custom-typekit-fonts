@@ -98,12 +98,12 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 		 */
 		public function add_elementor_fonts( $fonts ) {
 
-			$kit_list  = get_option( 'custom-typekit-fonts' );
-			$all_fonts = $kit_list['custom-typekit-font-details'];
+			$kit_list     = get_option( 'custom-typekit-fonts' );
+			$all_fonts    = $kit_list['custom-typekit-font-details'];
 			$custom_fonts = array();
 			if ( ! empty( $all_fonts ) ) {
 				foreach ( $all_fonts as $font_family_name => $fonts_url ) {
-					$custom_fonts[ strtolower(str_replace( " ", "-", $font_family_name ) ) ] = self::$font_base;
+					$custom_fonts[ strtolower( str_replace( ' ', '-', $font_family_name ) ) ] = self::$font_base;
 				}
 			}
 			return array_merge( $fonts, $custom_fonts );
