@@ -30,6 +30,7 @@ define( 'CUSTOM_TYPEKIT_FONTS_VER', '1.0.6' );
  * BSF Custom Fonts
  */
 require_once CUSTOM_TYPEKIT_FONTS_DIR . 'classes/class-custom-typekit-fonts.php';
+require_once CUSTOM_TYPEKIT_FONTS_URI . 'inc/lib/notices/class-astra-notices.php';
 
 if ( ! function_exists( 'register_notices' ) ) :
 
@@ -44,7 +45,6 @@ if ( ! function_exists( 'register_notices' ) ) :
 			array(
 				'id'                         => 'custom-typekit-fonts-rating',
 				'type'                       => '',
-				/* translators: %1$s logo link, %2$s product rating link, %3$s dismissable notice transient time. */
 				'message'                    => sprintf(
 					'<div class="notice-image">
 							<img src="%1$s" class="custom-logo" alt="Astra" itemprop="logo"></div> 
