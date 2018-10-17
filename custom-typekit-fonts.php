@@ -39,7 +39,7 @@ if ( ! function_exists( 'register_notices' ) ) :
 	 * @since 1.4.0
 	 */
 	function register_notices() {
-		$image_path = CUSTOM_TYPEKIT_FONTS_URI . 'assets/images/astra-logo.svg';
+		$image_path = CUSTOM_TYPEKIT_FONTS_URI . 'assets/images/custom-typekit-fonts-icon.png';
 		Astra_Notices::add_notice(
 			array(
 				'id'                         => 'custom-typekit-fonts-rating',
@@ -78,7 +78,7 @@ if ( ! function_exists( 'register_notices' ) ) :
 				),
 				'repeat-notice-after'        => MONTH_IN_SECONDS,
 				'priority'                   => 25,
-				'display-with-other-notices' => true,
+				'display-with-other-notices' => false,
 			)
 		);
 	}
