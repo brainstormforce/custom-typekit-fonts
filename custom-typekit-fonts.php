@@ -30,7 +30,7 @@ define( 'CUSTOM_TYPEKIT_FONTS_VER', '1.0.6' );
  * BSF Custom Fonts
  */
 require_once CUSTOM_TYPEKIT_FONTS_DIR . 'classes/class-custom-typekit-fonts.php';
-require_once CUSTOM_TYPEKIT_FONTS_URI . 'inc/lib/notices/class-astra-notices.php';
+require_once CUSTOM_TYPEKIT_FONTS_DIR . 'inc/lib/notices/class-astra-notices.php';
 
 if ( ! function_exists( 'register_notices' ) ) :
 
