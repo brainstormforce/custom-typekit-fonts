@@ -70,7 +70,7 @@ if ( ! function_exists( 'register_notices' ) ) :
 					$image_path,
 					__( 'Hello! Seems like you have used Custom Typekit Fonts to build this website — Thanks a ton!', 'custom-typekit-fonts' ),
 					__( 'Could you please do us a BIG favor and give it a 5-star rating on WordPress? This would boost our motivation and help other users make a comfortable decision while choosing the Custom Typekit Fonts.', 'custom-typekit-fonts' ),
-					'https://wordpress.org/support/theme/astra/reviews/?filter=5#new-post',
+					'https://wordpress.org/support/plugin/custom-typekit-fonts/reviews/?filter=5#new-post',
 					__( 'Ok, you deserve it', 'custom-typekit-fonts' ),
 					MONTH_IN_SECONDS,
 					__( 'Nope, maybe later', 'custom-typekit-fonts' ),
