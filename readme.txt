@@ -3,8 +3,8 @@ Contributors: brainstormforce, rushijagani
 Donate link: https://wpastra.com/
 Tags: custom typekit fonts, theme custom fonts, unlimited typekit custom fonts
 Requires at least: 4.4
-Tested up to: 4.9.7
-Stable tag: 1.0.6
+Tested up to: 5.0
+Stable tag: 1.0.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,6 +48,9 @@ If you're not using any of the supported plugins and theme, you can write the cu
 7. Select any Typekit font from Beaver Builder Theme Customizer
 
 == Changelog ==
+
+v1.0.7
+* Improvement: Enqueue typekit fonts in the block editor.
 
 v1.0.6
 * Fixed: Update font name to correct font family to be rendered correctly for all the fonts.
