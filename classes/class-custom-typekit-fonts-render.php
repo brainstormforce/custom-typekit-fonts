@@ -49,7 +49,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 		 */
 		public static function get_instance() {
 			if ( ! isset( self::$_instance ) ) {
-				self::$_instance = new self;
+				self::$_instance = new self();
 			}
 
 			return self::$_instance;
@@ -73,6 +73,8 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 			// Elementor page builder.
 			add_filter( 'elementor/fonts/groups', array( $this, 'elementor_group' ) );
 			add_filter( 'elementor/fonts/additional_fonts', array( $this, 'add_elementor_fonts' ) );
+
+			add_action( 'enqueue_block_editor_assets', array( $this, 'typekit_embed_head' ) );
 		}
 
 		/**
