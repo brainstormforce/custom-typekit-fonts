@@ -68,7 +68,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Update' ) ) {
 		 */
 		public function init() {
 			do_action( 'custom_typekit_fonts_update_before' );
-			delete_option( $this->get_option_name() );
+			
 			// Get auto saved version number.
 			$saved_version = get_option( $this->get_option_name(), false );
 
