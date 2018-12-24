@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Custom Typekit Fonts Update
  *
@@ -47,7 +46,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Update' ) ) {
 			if ( is_admin() ) {
 				add_action( 'admin_init', array( $this, 'init' ), 5 );
 			} else {
-				add_action( 'wp', array( $this, 'init' ), 5 );
+				add_action( 'init', array( $this, 'init' ), 5 );
 			}
 
 		}
@@ -68,7 +67,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Update' ) ) {
 		 */
 		public function init() {
 			do_action( 'custom_typekit_fonts_update_before' );
-			
+
 			// Get auto saved version number.
 			$saved_version = get_option( $this->get_option_name(), false );
 
@@ -94,10 +93,13 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Update' ) ) {
 		 * @return void
 		 */
 		private function v_1_0_8() {
-			$typekit        = new Custom_Typekit_Fonts();
-			$custom_typekit = get_option( 'custom-typekit-fonts' );
+			$typekit                               = new Custom_Typekit_Fonts();
+			$custom_typekit                        = get_option( 'custom-typekit-fonts' );
+			$option                                = array();
+			$option['custom-typekit-font-id']      = sanitize_text_field( $custom_typekit['custom-typekit-font-id'] );
+			$option['custom-typekit-font-details'] = $typekit->get_custom_typekit_details( $custom_typekit['custom-typekit-font-id'] );
 
-			$typekit->get_custom_typekit_details( $custom_typekit['custom-typekit-font-id'] );
+			update_option( 'custom-typekit-fonts', $option );
 		}
 
 	}
