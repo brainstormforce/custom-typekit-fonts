@@ -151,6 +151,9 @@ if ( ! class_exists( 'Custom_Typekit_Fonts' ) ) {
 						$typekit_info[ $family_name ]['weights'][] = $weight;
 					}
 				}
+
+				$typekit_info[ $family_name ]['slug']      = $family['slug'];
+				$typekit_info[ $family_name ]['css_names'] = $family['css_names'];
 			}
 
 			return $typekit_info;

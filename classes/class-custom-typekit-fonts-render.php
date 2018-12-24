@@ -105,9 +105,11 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 			$custom_fonts = array();
 			if ( ! empty( $all_fonts ) ) {
 				foreach ( $all_fonts as $font_family_name => $fonts_url ) {
-					$custom_fonts[ strtolower( str_replace( ' ', '-', $font_family_name ) ) ] = self::$font_base;
+					$font_css                  = isset( $fonts_url['css_names'][0] ) ? $fonts_url['css_names'][0] : $fonts_url['slug'];
+					$custom_fonts[ $font_css ] = self::$font_base;
 				}
 			}
+
 			return array_merge( $fonts, $custom_fonts );
 		}
 
@@ -192,7 +194,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 			if ( ! empty( $kit_list['custom-typekit-font-details'] ) ) {
 				echo '<optgroup label="Typekit">';
 				foreach ( $kit_list['custom-typekit-font-details'] as $font => $properties ) {
-					echo '<option value="' . esc_attr( $font ) . ',' . $properties['fallback'] . '" ' . selected( $font, $value, false ) . '>' . esc_attr( $font ) . '</option>';
+					echo '<option value="\'' . esc_attr( $font ) . '\',' . $properties['fallback'] . '" ' . selected( $font, $value, false ) . '>' . esc_attr( $font ) . '</option>';
 				}
 			}
 		}
@@ -209,12 +211,14 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 			$fonts        = $kit_list['custom-typekit-font-details'];
 			$custom_fonts = array();
 			if ( ! empty( $fonts ) ) :
-				foreach ( $fonts as $font_family_name => $fonts_url ) :
-					$custom_fonts[ $font_family_name ] = array(
+				foreach ( $fonts as $font_family_name => $fonts_url ) {
+					$font_css = isset( $fonts_url['css_names'][0] ) ? $fonts_url['css_names'][0] : $fonts_url['slug'];
+
+					$custom_fonts[ $font_css ] = array(
 						'fallback' => 'Verdana, Arial, sans-serif',
 						'weights'  => array( '100', '200', '300', '400', '500', '600', '700', '800', '900' ),
 					);
-				endforeach;
+				}
 			endif;
 
 			return array_merge( $bb_fonts, $custom_fonts );
