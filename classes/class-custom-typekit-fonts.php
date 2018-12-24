@@ -38,6 +38,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts' ) ) {
 		public function __construct() {
 			require_once CUSTOM_TYPEKIT_FONTS_DIR . 'classes/class-custom-typekit-fonts-admin.php';
 			require_once CUSTOM_TYPEKIT_FONTS_DIR . 'classes/class-custom-typekit-fonts-render.php';
+			require_once CUSTOM_TYPEKIT_FONTS_DIR . 'classes/class-custom-typekit-fonts-update.php';
 
 			add_action( 'init', array( $this, 'options_setting' ) );
 
