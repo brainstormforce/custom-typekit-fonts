@@ -105,7 +105,8 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 			$custom_fonts = array();
 			if ( ! empty( $all_fonts ) ) {
 				foreach ( $all_fonts as $font_family_name => $fonts_url ) {
-					$font_css                  = isset( $fonts_url['css_names'][0] ) ? $fonts_url['css_names'][0] : $fonts_url['slug'];
+					$font_slug                 = isset( $fonts_url['slug'] ) ? $fonts_url['slug'] : '';
+					$font_css                  = isset( $fonts_url['css_names'][0] ) ? $fonts_url['css_names'][0] : $font_slug;
 					$custom_fonts[ $font_css ] = self::$font_base;
 				}
 			}
@@ -212,7 +213,8 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 			$custom_fonts = array();
 			if ( ! empty( $fonts ) ) :
 				foreach ( $fonts as $font_family_name => $fonts_url ) {
-					$font_css = isset( $fonts_url['css_names'][0] ) ? $fonts_url['css_names'][0] : $fonts_url['slug'];
+					$font_slug = isset( $fonts_url['slug'] ) ? $fonts_url['slug'] : '';
+					$font_css  = isset( $fonts_url['css_names'][0] ) ? $fonts_url['css_names'][0] : $font_slug;
 
 					$custom_fonts[ $font_css ] = array(
 						'fallback' => 'Verdana, Arial, sans-serif',
