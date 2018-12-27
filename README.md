@@ -50,7 +50,7 @@ If you're not using any of the supported plugins and theme, you can write the cu
 ## Changelog ##
 
 ### v1.0.8 ###
-- Fixed: A few typekit fonts not being rendered correctly.
+- Fixed: A few TypeKit fonts not being rendered correctly.
 
 ### v1.0.7 ###
 - Improvement: Enqueue typekit fonts in the block editor.
