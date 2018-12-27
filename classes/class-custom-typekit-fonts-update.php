@@ -77,7 +77,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Update' ) ) {
 			}
 
 			// Update to older version than 1.0.8 version.
-			if ( version_compare( $saved_version, '1.0.8-beta.1', '<' ) ) {
+			if ( version_compare( $saved_version, '1.0.8', '<' ) ) {
 				$this->v_1_0_8();
 			}
 
