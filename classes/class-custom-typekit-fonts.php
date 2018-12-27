@@ -38,6 +38,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts' ) ) {
 		public function __construct() {
 			require_once CUSTOM_TYPEKIT_FONTS_DIR . 'classes/class-custom-typekit-fonts-admin.php';
 			require_once CUSTOM_TYPEKIT_FONTS_DIR . 'classes/class-custom-typekit-fonts-render.php';
+			require_once CUSTOM_TYPEKIT_FONTS_DIR . 'classes/class-custom-typekit-fonts-update.php';
 
 			add_action( 'init', array( $this, 'options_setting' ) );
 
@@ -151,6 +152,9 @@ if ( ! class_exists( 'Custom_Typekit_Fonts' ) ) {
 						$typekit_info[ $family_name ]['weights'][] = $weight;
 					}
 				}
+
+				$typekit_info[ $family_name ]['slug']      = $family['slug'];
+				$typekit_info[ $family_name ]['css_names'] = $family['css_names'];
 			}
 
 			return $typekit_info;
