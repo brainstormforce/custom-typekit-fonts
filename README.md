@@ -4,7 +4,7 @@
 **Tags:** custom typekit fonts, theme custom fonts, unlimited typekit custom fonts  
 **Requires at least:** 4.4  
 **Tested up to:** 5.0  
-**Stable tag:** 1.0.8  
+**Stable tag:** 1.0.9  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -48,6 +48,10 @@ If you're not using any of the supported plugins and theme, you can write the cu
 7. Select any Typekit font from Beaver Builder Theme Customizer
 
 ## Changelog ##
+
+### v1.0.9 ###
+- Improvement: Use CSS embed method for enqueueing TypeKit fonts. This should remove the slight delay in displaying the TypeKit fonts on the page,
+- Fix: Post URL in the Block Editor goes behind the Editor Top Bar.
 
 ### v1.0.8 ###
 - Fixed: A few TypeKit fonts not being rendered correctly.
