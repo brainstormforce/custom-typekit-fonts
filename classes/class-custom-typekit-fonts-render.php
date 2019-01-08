@@ -15,6 +15,8 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 	 */
 	class Custom_Typekit_Fonts_Render {
 
+		const TYPEKIT_EMBED_BASE = 'https://use.typekit.net/%s.css';
+
 		/**
 		 * Instance of Custom_Typekit_Fonts_Render
 		 *
@@ -62,7 +64,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 		 */
 		public function __construct() {
 
-			add_action( 'wp_head', array( $this, 'typekit_embed_head' ) );
+			add_action( 'wp_enqueue_scripts', array( $this, 'typekit_embed_css' ) );
 			// add Custom Font list into Astra customizer.
 			add_action( 'astra_customizer_font_list', array( $this, 'add_customizer_font_list' ) );
 			add_action( 'astra_render_fonts', array( $this, 'render_fonts' ) );
@@ -74,7 +76,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 			add_filter( 'elementor/fonts/groups', array( $this, 'elementor_group' ) );
 			add_filter( 'elementor/fonts/additional_fonts', array( $this, 'add_elementor_fonts' ) );
 
-			add_action( 'enqueue_block_editor_assets', array( $this, 'typekit_embed_head' ) );
+			add_action( 'enqueue_block_editor_assets', array( $this, 'typekit_embed_css' ) );
 		}
 
 		/**
@@ -115,28 +117,30 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 		}
 
 		/**
-		 * Add Script into wp head
+		 * Enqueue Typekit CSS.
 		 *
-		 * @since  1.0.0
+		 * @return void
 		 */
-		function typekit_embed_head() {
+		public function typekit_embed_css() {
+
+			if ( false !== $this->get_typekit_embed_url() ) {
+				wp_enqueue_style( 'custom-typekit-css', $this->get_typekit_embed_url(), array() );
+			}
+
+		}
+
+		/**
+		 * Get Typekit CSS embed URL
+		 *
+		 * @return String|Boolean If Kit ID is available the URL for typekit embed is returned.
+		 */
+		private function get_typekit_embed_url() {
 			$kit_info = get_option( 'custom-typekit-fonts' );
 			if ( empty( $kit_info['custom-typekit-font-details'] ) ) {
-				return;
+				return false;
 			}
-			?>
-			<script type="text/javascript">
-			(function(d) {
-				var config = {
-				kitId         : '<?php echo esc_js( $kit_info['custom-typekit-font-id'] ); ?>',
-				scriptTimeout : 3000,
-				async         : true
-				},
-				h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
-			})(document);
-			</script>
 
-			<?php
+			return sprintf( self::TYPEKIT_EMBED_BASE, $kit_info['custom-typekit-font-id'] );
 		}
 
 		/**
