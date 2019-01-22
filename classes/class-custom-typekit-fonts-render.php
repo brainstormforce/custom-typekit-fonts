@@ -240,9 +240,8 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 		 */
 		function remove_typekit_font_google_url( $fonts ) {
 
-			$kit_list = get_option( 'custom-typekit-fonts' );
-
-			if ( $kit_list ) {
+			$kit_list = get_option( 'custom-typekit-fonts', array() );
+			if ( ! empty( $kit_list['custom-typekit-font-details'] ) ) {
 				foreach ( $kit_list['custom-typekit-font-details'] as $key => $value ) {
 					$font_key = "'" . $value['family'] . "'" . ',' . $value['fallback'];
 					if ( array_key_exists( $font_key, $fonts ) ) {
