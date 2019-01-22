@@ -240,18 +240,18 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 		 */
 		function remove_typekit_font_google_url( $fonts ) {
 
-		    $kit_list = get_option( 'custom-typekit-fonts' );
+			$kit_list = get_option( 'custom-typekit-fonts' );
 
 			if ( $kit_list ) {
-			    foreach ( $kit_list['custom-typekit-font-details'] as $key => $value ) {
-			    	$font_key = "'" . $value['family'] . "'" . ',' . $value['fallback'];
-			    	if ( array_key_exists( $font_key, $fonts ) ) {
-			    		unset($fonts[$font_key]);
-			    	}
-			    }
+				foreach ( $kit_list['custom-typekit-font-details'] as $key => $value ) {
+					$font_key = "'" . $value['family'] . "'" . ',' . $value['fallback'];
+					if ( array_key_exists( $font_key, $fonts ) ) {
+						unset( $fonts[ $font_key ] );
+					}
+				}
 			}
-		    
-		    return $fonts;
+
+			return $fonts;
 		}
 	}
 
