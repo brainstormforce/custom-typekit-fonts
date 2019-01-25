@@ -1,4 +1,4 @@
-# Custom Typekit Fonts #
+# Custom Adobe Fonts (Typekit) #
 **Contributors:** [brainstormforce](https://profiles.wordpress.org/brainstormforce), [rushijagani](https://profiles.wordpress.org/rushijagani)  
 **Donate link:** https://wpastra.com/  
 **Tags:** custom typekit fonts, theme custom fonts, unlimited typekit custom fonts  

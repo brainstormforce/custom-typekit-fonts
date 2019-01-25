@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:     Custom Typekit Fonts
+ * Plugin Name:     Custom Adobe Fonts (Typekit)
  * Plugin URI:      http://www.wpastra.com/
  * Description:     Custom Typekit Fonts allows you to extends the fonts supports from the Typekit.
  * Author:          Brainstorm Force
