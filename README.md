@@ -1,6 +1,6 @@
 # Custom Typekit Fonts #
 **Contributors:** [brainstormforce](https://profiles.wordpress.org/brainstormforce)
-**Donate link:** https://wpastra.com/  
+**Donate link:** https://www.paypal.me/BrainstormForce  
 **Tags:** custom typekit fonts, theme custom fonts, unlimited typekit custom fonts  
 **Requires at least:** 4.4  
 **Tested up to:** 5.0  
