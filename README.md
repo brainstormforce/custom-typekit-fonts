@@ -3,7 +3,7 @@
 **Donate link:** https://www.paypal.me/BrainstormForce  
 **Tags:** custom typekit fonts, theme custom fonts, unlimited typekit custom fonts  
 **Requires at least:** 4.4  
-**Tested up to:** 5.0  
+**Tested up to:** 5.1  
 **Stable tag:** 1.0.10  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
