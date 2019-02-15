@@ -8,7 +8,7 @@
 $kit_info = get_option( 'custom-typekit-fonts' );
 ?>
 <div class="wrap">
-	<h2><?php esc_html_e( apply_filters( 'custom_typekit_fonts_menu_title', __( 'Adobe Fonts', 'custom-typekit-fonts' ) ) ); ?></h2>
+	<h2><?php echo esc_html( apply_filters( 'custom_typekit_fonts_menu_title', __( 'Adobe Fonts', 'custom-typekit-fonts' ) ) ); ?></h2>
 	<div id="poststuff">
 		<div id="post-body" class="metabox-holder columns-2 typekit-custom-fonts-wrap">
 			<div id="post-body-content">

@@ -123,7 +123,7 @@ if ( ! class_exists( 'Typekit_Fonts_White_Label' ) ) :
 					$title = $name;
 				}
 			}
-			
+
 			return $title;
 		}
 
