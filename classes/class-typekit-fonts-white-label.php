@@ -117,7 +117,7 @@ if ( ! class_exists( 'Typekit_Fonts_White_Label' ) ) :
 		 */
 		function white_label_custom_typekit_fonts_title( $title ) {
 
-			if ( is_callable( 'Astra_Ext_White_Label_Markup::get_whitelabel_string', true ) ) {
+			if ( is_callable( 'Astra_Ext_White_Label_Markup::get_whitelabel_string' ) ) {
 				$name = Astra_Ext_White_Label_Markup::get_whitelabel_string( 'custom-typekit-fonts', 'name' );
 				if ( ! empty( $name ) ) {
 					$title = $name;
