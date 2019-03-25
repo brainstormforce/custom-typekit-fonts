@@ -39,8 +39,8 @@ If you're not using any of the supported plugins and theme, you can write the cu
 
 ## Screenshots ##
 
-1. Get your Adobe ID
-2. Enter your Adobe ID 
+1. Get your Project ID
+2. Enter your Project ID 
 3. Get all published kit details from your Adobe ID
 4. Select any Adobe font from Astra Theme Customizer
 5. Select any Adobe font from Elementor
