@@ -1,11 +1,11 @@
 # Copyright (C) 2019 Brainstorm Force
-# This file is distributed under the same license as the Custom Typekit Fonts package.
+# This file is distributed under the same license as the Custom Adobe Fonts (Typekit) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Custom Typekit Fonts 1.0.10\n"
+"Project-Id-Version: Custom Adobe Fonts (Typekit) 1.0.11\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/custom-typekit-fonts\n"
-"POT-Creation-Date: 2019-01-22 02:37:10+00:00\n"
+"POT-Creation-Date: 2019-03-25 11:29:25+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -26,7 +26,6 @@ msgstr ""
 "X-Generator: grunt-wp-i18n 1.0.3\n"
 
 #: classes/class-custom-typekit-fonts-admin.php:80
-#: templates/custom-typekit-fonts-options.php:27
 msgid "Please Enter the Valid Kit ID to get the kit details."
 msgstr ""
 
@@ -39,8 +38,11 @@ msgid "Custom Typekit Fonts settings have been successfully saved."
 msgstr ""
 
 #: classes/class-custom-typekit-fonts-admin.php:106
-#: classes/class-custom-typekit-fonts-render.php:94
 #: templates/custom-typekit-fonts-options.php:11
+msgid "Adobe Fonts"
+msgstr ""
+
+#: classes/class-custom-typekit-fonts-render.php:94
 msgid "Typekit Fonts"
 msgstr ""
 
@@ -49,11 +51,15 @@ msgid "Settings"
 msgstr ""
 
 #: templates/custom-typekit-fonts-options.php:24
-msgid "Kit ID:"
+msgid "Project ID:"
+msgstr ""
+
+#: templates/custom-typekit-fonts-options.php:27
+msgid "Please Enter the Valid Project ID to get the kit details."
 msgstr ""
 
 #: templates/custom-typekit-fonts-options.php:35
-msgid "Edit Kit ID"
+msgid "Edit Project ID"
 msgstr ""
 
 #: templates/custom-typekit-fonts-options.php:39
@@ -93,8 +99,8 @@ msgstr ""
 #: templates/custom-typekit-fonts-options.php:112
 #. translators: %1$s: typekit site url.
 msgid ""
-"You can get the Kit ID <a href=%1$s target=\"_blank\" >here</a> from your "
-"Typekit Account. <b>Kit ID</b> can be found next to the kit names."
+"You can get the Project ID <a href=%1$s target=\"_blank\" >here</a> from "
+"your Typekit Account. <b>Project ID</b> can be found next to the kit names."
 msgstr ""
 
 #: templates/custom-typekit-fonts-options.php:123
@@ -117,20 +123,20 @@ msgstr ""
 msgid "Go To Customizer"
 msgstr ""
 
-#: templates/white-label.php:12 templates/white-label.php:17
+#: templates/white-label.php:18 templates/white-label.php:23
 msgid "Custom Typekit Fonts Branding"
 msgstr ""
 
-#: templates/white-label.php:23
+#: templates/white-label.php:29
 msgid "Plugin Name:"
 msgstr ""
 
-#: templates/white-label.php:28
+#: templates/white-label.php:34
 msgid "Plugin Description:"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
-msgid "Custom Typekit Fonts"
+msgid "Custom Adobe Fonts (Typekit)"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
@@ -139,7 +145,7 @@ msgstr ""
 
 #. Description of the plugin/theme
 msgid ""
-"Custom Typekit Fonts allows you to extends the fonts supports from the "
+"Custom Adobe Fonts allows you to extends the fonts supports from the "
 "Typekit."
 msgstr ""
 

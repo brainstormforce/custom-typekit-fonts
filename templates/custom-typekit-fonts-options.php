@@ -8,7 +8,7 @@
 $kit_info = get_option( 'custom-typekit-fonts' );
 ?>
 <div class="wrap">
-	<h2><?php esc_html_e( 'Typekit Fonts', 'custom-typekit-fonts' ); ?></h2>
+	<h2><?php echo esc_html( apply_filters( 'custom_typekit_fonts_menu_title', __( 'Adobe Fonts', 'custom-typekit-fonts' ) ) ); ?></h2>
 	<div id="poststuff">
 		<div id="post-body" class="metabox-holder columns-2 typekit-custom-fonts-wrap">
 			<div id="post-body-content">
@@ -21,10 +21,10 @@ $kit_info = get_option( 'custom-typekit-fonts' );
 								<tr valign="top">
 									<th scope="row">
 										<label
-											for="typekit_id"> <?php esc_html_e( 'Kit ID:', 'custom-typekit-fonts' ); ?>
+											for="typekit_id"> <?php esc_html_e( 'Project ID:', 'custom-typekit-fonts' ); ?>
 										</label>
 										<i class="custom-typekit-fonts-help dashicons dashicons-editor-help"
-										title="<?php echo esc_attr__( 'Please Enter the Valid Kit ID to get the kit details.', 'custom-typekit-fonts' ); ?>"></i>
+										title="<?php echo esc_attr__( 'Please Enter the Valid Project ID to get the kit details.', 'custom-typekit-fonts' ); ?>"></i>
 									</th>
 									<td><input
 											style="display:<?php echo esc_attr( empty( $kit_info['custom-typekit-font-details'] ) ? 'inline-block' : 'none' ); ?>"
@@ -32,7 +32,7 @@ $kit_info = get_option( 'custom-typekit-fonts' );
 											value="<?php echo ( isset( $kit_info['custom-typekit-font-id'] ) ) ? esc_attr( $kit_info['custom-typekit-font-id'] ) : ''; ?>">
 										<?php if ( ! empty( $kit_info['custom-typekit-font-details'] ) ) : ?>
 											<a class="add-new-typekit button button-large"
-											href="#"><?php echo esc_html__( 'Edit Kit ID', 'custom-typekit-fonts' ); ?></a>
+											href="#"><?php echo esc_html__( 'Edit Project ID', 'custom-typekit-fonts' ); ?></a>
 										<?php endif; ?>
 
 										<?php
@@ -109,7 +109,7 @@ $kit_info = get_option( 'custom-typekit-fonts' );
 								<p>
 									<?php
 									/* translators: %1$s: typekit site url. */
-									printf( __( 'You can get the Kit ID <a href=%1$s target="_blank" >here</a> from your Typekit Account. <b>Kit ID</b> can be found next to the kit names.', 'custom-typekit-fonts' ), 'https://typekit.com/account/kits' );
+									printf( __( 'You can get the Project ID <a href=%1$s target="_blank" >here</a> from your Typekit Account. <b>Project ID</b> can be found next to the kit names.', 'custom-typekit-fonts' ), 'https://fonts.adobe.com/my_fonts?browse_mode=all#web_projects-section' );
 									?>
 								</p>
 

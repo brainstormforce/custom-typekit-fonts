@@ -1,18 +1,18 @@
-# Custom Typekit Fonts #
-**Contributors:** [brainstormforce](https://profiles.wordpress.org/brainstormforce)
+# Custom Adobe Fonts (Typekit) #
+**Contributors:** [brainstormforce](https://profiles.wordpress.org/brainstormforce)  
 **Donate link:** https://www.paypal.me/BrainstormForce  
-**Tags:** custom typekit fonts, theme custom fonts, unlimited typekit custom fonts  
+**Tags:** custom adobe fonts, theme custom fonts, unlimited typekit custom fonts  
 **Requires at least:** 4.4  
 **Tested up to:** 5.1  
-**Stable tag:** 1.0.10  
+**Stable tag:** 1.0.11  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
-Custom Typekit Fonts allows you to extends the fonts supports from the Typekit.
+Custom Adobe Fonts allows you to extends the fonts supports from the Typekit.
 
 ## Description ##
 
-This plugin helps you easily embed Typekit fonts easily in your WordPress website.
+This plugin helps you easily embed adobe fonts easily in your WordPress website.
 
 Currently it works with:
 
@@ -48,6 +48,9 @@ If you're not using any of the supported plugins and theme, you can write the cu
 7. Select any Typekit font from Beaver Builder Theme Customizer
 
 ## Changelog ##
+
+### v1.0.11 ###
+- Improvement: Allow whitelabel settings to be setup from using constants when using Astra Pro.
 
 ### v1.0.10 ###
 - Fix: Remove typekit font from the Astra Theme's google fonts URL.
