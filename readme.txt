@@ -8,7 +8,7 @@ Stable tag: 1.0.11
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Custom Adobe Fonts allows you to extends the fonts supports from the Typekit.
+Custom Adobe Fonts allows you to extends the fonts supports from the Abobe Fonts.
 
 == Description ==
 
@@ -24,7 +24,7 @@ Currently it works with:
 How does it work?
 
 1. Install the plugin
-2. Enter the Kit ID that you create in Typekit
+2. Enter the Project ID that you create in adobe fonts.
 3. And done. You will be able to see the fonts added in the settings of Astra / Beaver Builder / Elementor. Please refer screenshots.
 
 If you're not using any of the supported plugins and theme, you can write the custom CSS to apply the fonts.
@@ -33,19 +33,19 @@ If you're not using any of the supported plugins and theme, you can write the cu
 
 1. Upload the plugin files to the `/wp-content/plugins/custom-typekit-fonts` directory, or install the plugin through the WordPress plugins screen directly.
 2. Activate the plugin through the 'Plugins' screen in WordPress.
-3. Use the Appearance -> Typekit Fonts -> Add Kit ID and get all Font list.
+3. Use the Appearance -> Adobe Fonts -> Add Kit ID and get all Font list.
 4. If you are using [Astra](https://wpastra.com) then start using fonts from the customizer.
-5. You can also select Font Family from Appearance -> Typekit Fonts and start using it into your custom CSS.
+5. You can also select Font Family from Appearance -> Adobe Fonts and start using it into your custom CSS.
 
 == Screenshots ==
 
-1. Get your Typekit ID
-2. Enter your Typekit ID 
-3. Get all published kit details from your Typekit ID
-4. Select any Typekit font from Astra Theme Customizer
-5. Select any Typekit font from Elementor
-6. Select any Typekit font from Beaver Builder
-7. Select any Typekit font from Beaver Builder Theme Customizer
+1. Get your Adobe ID
+2. Enter your Adobe ID 
+3. Get all published kit details from your Adobe ID
+4. Select any Adobe font from Astra Theme Customizer
+5. Select any Adobe font from Elementor
+6. Select any Adobe font from Beaver Builder
+7. Select any Adobe font from Beaver Builder Theme Customizer
 
 == Changelog ==
 
