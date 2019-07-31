@@ -52,7 +52,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Admin' ) ) :
 		 * @since  1.0.0
 		 */
 		public function __construct() {
-			add_action( 'admin_menu', array( $this, 'register_custom_fonts_menu' ) );
+			add_action( 'admin_menu', array( $this, 'register_custom_fonts_menu' ), 101 );
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 			add_action( 'admin_notices', array( $this, 'set_custom_typekit_fonts_notice' ) );
 
