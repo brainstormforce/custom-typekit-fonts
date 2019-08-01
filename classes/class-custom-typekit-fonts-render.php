@@ -158,8 +158,12 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 			if ( empty( $kit_info['custom-typekit-font-details'] ) ) {
 				return $custom_fonts;
 			}
+			foreach ( $kit_info['custom-typekit-font-details'] as $font => $properties ) {
+				unset( $kit_info['custom-typekit-font-details'][ $font ] );
+				$font = "'" . esc_attr( $font ) . '\',' . esc_attr( $properties['fallback'] );
+				$kit_info['custom-typekit-font-details'][ $font ] = $properties;
+			}
 			$new_custom_fonts = wp_parse_args( $kit_info['custom-typekit-font-details'], $custom_fonts );
-
 			return $new_custom_fonts;
 
 		}
@@ -199,7 +203,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 
 			$kit_list = get_option( 'custom-typekit-fonts' );
 			if ( ! empty( $kit_list['custom-typekit-font-details'] ) ) {
-				echo '<optgroup label="Typekit">';
+				echo '<optgroup label="Adobe Fonts">';
 				foreach ( $kit_list['custom-typekit-font-details'] as $font => $properties ) {
 					echo '<option value="\'' . esc_attr( $font ) . '\',' . esc_attr( $properties['fallback'] ) . '" ' . selected( $font, $value, false ) . '>' . esc_html( $font ) . '</option>';
 				}
@@ -243,9 +247,8 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 			$kit_list = get_option( 'custom-typekit-fonts', array() );
 			if ( ! empty( $kit_list['custom-typekit-font-details'] ) ) {
 				foreach ( $kit_list['custom-typekit-font-details'] as $key => $value ) {
-					$font_key = "'" . $value['family'] . "'" . ',' . $value['fallback'];
-					if ( array_key_exists( $font_key, $fonts ) ) {
-						unset( $fonts[ $font_key ] );
+					if ( array_key_exists( $key, $fonts ) ) {
+						unset( $fonts[ $key ] );
 					}
 				}
 			}
