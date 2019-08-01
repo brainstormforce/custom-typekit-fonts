@@ -158,8 +158,12 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 			if ( empty( $kit_info['custom-typekit-font-details'] ) ) {
 				return $custom_fonts;
 			}
+			foreach ( $kit_info['custom-typekit-font-details'] as $font => $properties ) {
+				unset( $kit_info['custom-typekit-font-details'][ $font ] );
+				$font = "'" . esc_attr( $font ) . '\',' . esc_attr( $properties['fallback'] );
+				$kit_info['custom-typekit-font-details'][ $font ] = $properties;
+			}
 			$new_custom_fonts = wp_parse_args( $kit_info['custom-typekit-font-details'], $custom_fonts );
-
 			return $new_custom_fonts;
 
 		}
