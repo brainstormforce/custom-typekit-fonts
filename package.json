@@ -1,8 +1,8 @@
 {
   "name": "custom-typekit-fonts",
-  "version": "1.0.10",
+  "version": "1.0.12",
   "main": "Gruntfile.js",
-  "author": "YOUR NAME HERE",
+  "author": "Brainstorm Force",
   "devDependencies": {
     "grunt": "~1.0.4",
     "grunt-wp-i18n": "~1.0.3",
