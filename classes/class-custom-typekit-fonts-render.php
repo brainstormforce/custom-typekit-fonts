@@ -251,6 +251,9 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 					if ( array_key_exists( $font_key, $fonts ) ) {
 						unset( $fonts[ $font_key ] );
 					}
+					if ( array_key_exists( $key, $fonts ) ) {
+						unset( $fonts[ $key ] );
+					}
 				}
 			}
 
