@@ -247,8 +247,9 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 			$kit_list = get_option( 'custom-typekit-fonts', array() );
 			if ( ! empty( $kit_list['custom-typekit-font-details'] ) ) {
 				foreach ( $kit_list['custom-typekit-font-details'] as $key => $value ) {
-					if ( array_key_exists( $key, $fonts ) ) {
-						unset( $fonts[ $key ] );
+					$font_key = "'" . $value['family'] . "'" . ',' . $value['fallback'];
+					if ( array_key_exists( $font_key, $fonts ) ) {
+						unset( $fonts[ $font_key ] );
 					}
 				}
 			}
