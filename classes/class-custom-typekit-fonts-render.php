@@ -78,6 +78,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 
 			add_action( 'enqueue_block_editor_assets', array( $this, 'typekit_embed_css' ) );
 			// Astra filter before creating google fonts URL.
+			add_filter( 'astra_google_fonts', array( $this, 'remove_typekit_font_google_url' ) );
 			add_filter( 'astra_google_fonts_selected', array( $this, 'remove_typekit_font_google_url' ) );
 		}
 
