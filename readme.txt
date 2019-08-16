@@ -49,6 +49,9 @@ If you're not using any of the supported plugins and theme, you can write the cu
 
 == Changelog ==
 
+= v1.0.13 =
+- Fix: Console errors in customizer & frontend on adobe font(TypeKit) selection. 
+
 = v1.0.12 =
 - Fix: Load Custom Adobe Fonts (Typekit) menu after Astra Options.
 - Fix: Console errors in customizer while selecting font. 
