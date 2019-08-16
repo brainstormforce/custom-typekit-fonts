@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the Custom Adobe Fonts (Typekit) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Custom Adobe Fonts (Typekit) 1.0.12\n"
+"Project-Id-Version: Custom Adobe Fonts (Typekit) 1.0.13\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/custom-typekit-fonts\n"
-"POT-Creation-Date: 2019-08-02 10:31:30+00:00\n"
+"POT-Creation-Date: 2019-08-16 06:03:06+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -42,7 +42,7 @@ msgstr ""
 msgid "Adobe Fonts"
 msgstr ""
 
-#: classes/class-custom-typekit-fonts-render.php:94
+#: classes/class-custom-typekit-fonts-render.php:95
 msgid "Typekit Fonts"
 msgstr ""
 
