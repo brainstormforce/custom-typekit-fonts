@@ -52,7 +52,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Admin' ) ) :
 		 * @since  1.0.0
 		 */
 		public function __construct() {
-			add_action( 'admin_menu', array( $this, 'register_custom_fonts_menu' ) );
+			add_action( 'admin_menu', array( $this, 'register_custom_fonts_menu' ), 101 );
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 			add_action( 'admin_notices', array( $this, 'set_custom_typekit_fonts_notice' ) );
 
@@ -90,7 +90,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Admin' ) ) :
 								<p><?php _e( 'Custom Typekit Fonts settings have been successfully saved.', 'custom-typekit-fonts' ); ?></p>
 							</div>
 							<?php
-}
+							}
 					}
 				}
 			}
@@ -103,7 +103,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Admin' ) ) :
 		 */
 		public function register_custom_fonts_menu() {
 
-			$title = apply_filters( 'custom_typekit_fonts_menu_title', __( 'Typekit Fonts', 'custom-typekit-fonts' ) );
+			$title = apply_filters( 'custom_typekit_fonts_menu_title', __( 'Adobe Fonts', 'custom-typekit-fonts' ) );
 
 			add_submenu_page(
 				'themes.php',

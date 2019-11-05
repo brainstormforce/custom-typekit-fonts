@@ -15,6 +15,8 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 	 */
 	class Custom_Typekit_Fonts_Render {
 
+		const TYPEKIT_EMBED_BASE = 'https://use.typekit.net/%s.css';
+
 		/**
 		 * Instance of Custom_Typekit_Fonts_Render
 		 *
@@ -49,7 +51,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 		 */
 		public static function get_instance() {
 			if ( ! isset( self::$_instance ) ) {
-				self::$_instance = new self;
+				self::$_instance = new self();
 			}
 
 			return self::$_instance;
@@ -62,8 +64,8 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 		 */
 		public function __construct() {
 
-			add_action( 'wp_head', array( $this, 'typekit_embed_head' ) );
-			// add Custom Font list into Astra customizer.
+			add_action( 'wp_enqueue_scripts', array( $this, 'typekit_embed_css' ) );
+			// Add Custom Font list into Astra customizer.
 			add_action( 'astra_customizer_font_list', array( $this, 'add_customizer_font_list' ) );
 			add_action( 'astra_render_fonts', array( $this, 'render_fonts' ) );
 			add_filter( 'astra_custom_fonts', array( $this, 'add_typekit_fonts' ) );
@@ -73,6 +75,11 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 			// Elementor page builder.
 			add_filter( 'elementor/fonts/groups', array( $this, 'elementor_group' ) );
 			add_filter( 'elementor/fonts/additional_fonts', array( $this, 'add_elementor_fonts' ) );
+
+			add_action( 'enqueue_block_editor_assets', array( $this, 'typekit_embed_css' ) );
+			// Astra filter before creating google fonts URL.
+			add_filter( 'astra_google_fonts', array( $this, 'remove_typekit_font_google_url' ) );
+			add_filter( 'astra_google_fonts_selected', array( $this, 'remove_typekit_font_google_url' ) );
 		}
 
 		/**
@@ -103,35 +110,40 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 			$custom_fonts = array();
 			if ( ! empty( $all_fonts ) ) {
 				foreach ( $all_fonts as $font_family_name => $fonts_url ) {
-					$custom_fonts[ strtolower( str_replace( ' ', '-', $font_family_name ) ) ] = self::$font_base;
+					$font_slug                 = isset( $fonts_url['slug'] ) ? $fonts_url['slug'] : '';
+					$font_css                  = isset( $fonts_url['css_names'][0] ) ? $fonts_url['css_names'][0] : $font_slug;
+					$custom_fonts[ $font_css ] = self::$font_base;
 				}
 			}
+
 			return array_merge( $fonts, $custom_fonts );
 		}
 
 		/**
-		 * Add Script into wp head
+		 * Enqueue Typekit CSS.
 		 *
-		 * @since  1.0.0
+		 * @return void
 		 */
-		function typekit_embed_head() {
+		public function typekit_embed_css() {
+
+			if ( false !== $this->get_typekit_embed_url() ) {
+				wp_enqueue_style( 'custom-typekit-css', $this->get_typekit_embed_url(), array() );
+			}
+
+		}
+
+		/**
+		 * Get Typekit CSS embed URL
+		 *
+		 * @return String|Boolean If Kit ID is available the URL for typekit embed is returned.
+		 */
+		private function get_typekit_embed_url() {
 			$kit_info = get_option( 'custom-typekit-fonts' );
 			if ( empty( $kit_info['custom-typekit-font-details'] ) ) {
-				return;
+				return false;
 			}
-			?>
-			<script type="text/javascript">
-			(function(d) {
-				var config = {
-				kitId         : '<?php echo esc_js( $kit_info['custom-typekit-font-id'] ); ?>',
-				scriptTimeout : 3000,
-				async         : true
-				},
-				h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
-			})(document);
-			</script>
 
-			<?php
+			return sprintf( self::TYPEKIT_EMBED_BASE, $kit_info['custom-typekit-font-id'] );
 		}
 
 		/**
@@ -147,8 +159,12 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 			if ( empty( $kit_info['custom-typekit-font-details'] ) ) {
 				return $custom_fonts;
 			}
+			foreach ( $kit_info['custom-typekit-font-details'] as $font => $properties ) {
+				unset( $kit_info['custom-typekit-font-details'][ $font ] );
+				$font = "'" . esc_attr( $font ) . '\',' . esc_attr( $properties['fallback'] );
+				$kit_info['custom-typekit-font-details'][ $font ] = $properties;
+			}
 			$new_custom_fonts = wp_parse_args( $kit_info['custom-typekit-font-details'], $custom_fonts );
-
 			return $new_custom_fonts;
 
 		}
@@ -188,9 +204,9 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 
 			$kit_list = get_option( 'custom-typekit-fonts' );
 			if ( ! empty( $kit_list['custom-typekit-font-details'] ) ) {
-				echo '<optgroup label="Typekit">';
+				echo '<optgroup label="Adobe Fonts">';
 				foreach ( $kit_list['custom-typekit-font-details'] as $font => $properties ) {
-					echo '<option value="' . esc_attr( $font ) . ',' . $properties['fallback'] . '" ' . selected( $font, $value, false ) . '>' . esc_attr( $font ) . '</option>';
+					echo '<option value="\'' . esc_attr( $font ) . '\',' . esc_attr( $properties['fallback'] ) . '" ' . selected( $font, $value, false ) . '>' . esc_html( $font ) . '</option>';
 				}
 			}
 		}
@@ -207,15 +223,42 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 			$fonts        = $kit_list['custom-typekit-font-details'];
 			$custom_fonts = array();
 			if ( ! empty( $fonts ) ) :
-				foreach ( $fonts as $font_family_name => $fonts_url ) :
-					$custom_fonts[ $font_family_name ] = array(
+				foreach ( $fonts as $font_family_name => $fonts_url ) {
+					$font_slug = isset( $fonts_url['slug'] ) ? $fonts_url['slug'] : '';
+					$font_css  = isset( $fonts_url['css_names'][0] ) ? $fonts_url['css_names'][0] : $font_slug;
+
+					$custom_fonts[ $font_css ] = array(
 						'fallback' => 'Verdana, Arial, sans-serif',
 						'weights'  => array( '100', '200', '300', '400', '500', '600', '700', '800', '900' ),
 					);
-				endforeach;
+				}
 			endif;
 
 			return array_merge( $bb_fonts, $custom_fonts );
+		}
+
+		/**
+		 * Remove Typekit Font from Google Font URL.
+		 *
+		 * @since  1.1.0
+		 * @param array $fonts font families selected.
+		 */
+		function remove_typekit_font_google_url( $fonts ) {
+
+			$kit_list = get_option( 'custom-typekit-fonts', array() );
+			if ( ! empty( $kit_list['custom-typekit-font-details'] ) ) {
+				foreach ( $kit_list['custom-typekit-font-details'] as $key => $value ) {
+					$font_key = "'" . $value['family'] . "'" . ',' . $value['fallback'];
+					if ( array_key_exists( $font_key, $fonts ) ) {
+						unset( $fonts[ $font_key ] );
+					}
+					if ( array_key_exists( $key, $fonts ) ) {
+						unset( $fonts[ $key ] );
+					}
+				}
+			}
+
+			return $fonts;
 		}
 	}
 
