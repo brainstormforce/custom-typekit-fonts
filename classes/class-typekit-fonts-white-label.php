@@ -41,7 +41,7 @@ if ( ! class_exists( 'Typekit_Fonts_White_Label' ) ) :
 		 */
 		public static function set_instance() {
 			if ( ! isset( self::$instance ) ) {
-				self::$instance = new self;
+				self::$instance = new self();
 			}
 			return self::$instance;
 		}

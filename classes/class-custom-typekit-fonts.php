@@ -26,7 +26,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts' ) ) {
 		 */
 		public static function get_instance() {
 			if ( ! isset( self::$instance ) ) {
-				self::$instance = new self;
+				self::$instance = new self();
 			}
 
 			return self::$instance;

@@ -40,7 +40,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Admin' ) ) :
 		 */
 		public static function get_instance() {
 			if ( ! isset( self::$_instance ) ) {
-				self::$_instance = new self;
+				self::$_instance = new self();
 			}
 
 			return self::$_instance;
