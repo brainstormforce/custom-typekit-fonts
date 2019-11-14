@@ -6,7 +6,7 @@
  * @package Bsf_Custom_Fonts
  */
 
-defined( 'ABSPATH' ) or exit;
+defined( 'ABSPATH' ) || exit;
 
 if ( ! class_exists( 'Custom_Typekit_Fonts_Admin' ) ) :
 
@@ -21,7 +21,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Admin' ) ) :
 		 * @since  1.0.0
 		 * @var (Object) Custom_Typekit_Fonts_Admin
 		 */
-		private static $_instance = null;
+		private static $instance = null;
 
 		/**
 		 * Parent Menu Slug
@@ -39,11 +39,11 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Admin' ) ) :
 		 * @return object Class object.
 		 */
 		public static function get_instance() {
-			if ( ! isset( self::$_instance ) ) {
-				self::$_instance = new self();
+			if ( ! isset( self::$instance ) ) {
+				self::$instance = new self();
 			}
 
-			return self::$_instance;
+			return self::$instance;
 		}
 
 		/**
@@ -77,17 +77,17 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Admin' ) ) :
 						if ( isset( $_POST['custom-typekit-id-notice'] ) && $_POST['custom-typekit-id-notice'] ) {
 							?>
 							<div class="notice notice-error is-dismissible">
-								<p><?php _e( 'Please Enter the Valid Kit ID to get the kit details.', 'custom-typekit-fonts' ); ?></p>
+								<p><?php esc_html_e( 'Please Enter the Valid Kit ID to get the kit details.', 'custom-typekit-fonts' ); ?></p>
 							</div>
 							<?php
 						} elseif ( isset( $_POST['custom-typekit-empty-notice'] ) && $_POST['custom-typekit-empty-notice'] ) {
 							?>
 							<div class="notice notice-warning is-dismissible">
-								<p><?php _e( 'This Kit is empty. Please add some fonts in it.', 'custom-typekit-fonts' ); ?></p>
+								<p><?php esc_html_e( 'This Kit is empty. Please add some fonts in it.', 'custom-typekit-fonts' ); ?></p>
 							</div>
 							<?php } else { ?>
 							<div class="notice notice-success is-dismissible">
-								<p><?php _e( 'Custom Typekit Fonts settings have been successfully saved.', 'custom-typekit-fonts' ); ?></p>
+								<p><?php esc_html_e( 'Custom Typekit Fonts settings have been successfully saved.', 'custom-typekit-fonts' ); ?></p>
 							</div>
 							<?php
 							}
@@ -138,7 +138,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Admin' ) ) :
 
 			wp_enqueue_style( 'custom-typekit-fonts-css', CUSTOM_TYPEKIT_FONTS_URI . 'assets/css/custom-typekit-fonts.css', array(), CUSTOM_TYPEKIT_FONTS_VER );
 
-			wp_enqueue_script( 'custom-typekit-fonts-js', CUSTOM_TYPEKIT_FONTS_URI . 'assets/js/custom-typekit-fonts.js', array( 'jquery-ui-tooltip' ), CUSTOM_TYPEKIT_FONTS_VER );
+			wp_enqueue_script( 'custom-typekit-fonts-js', CUSTOM_TYPEKIT_FONTS_URI . 'assets/js/custom-typekit-fonts.js', array( 'jquery-ui-tooltip' ), CUSTOM_TYPEKIT_FONTS_VER, false );
 
 		}
 

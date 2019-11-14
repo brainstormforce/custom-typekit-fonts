@@ -104,7 +104,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts' ) ) {
 		 *
 		 * @param string $kit_id Typekit ID.
 		 */
-		function get_custom_typekit_details( $kit_id ) {
+		public function get_custom_typekit_details( $kit_id ) {
 
 			$typekit_info = array();
 			$typekit_uri  = 'https://typekit.com/api/v1/json/kits/' . $kit_id . '/published';
@@ -178,7 +178,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts' ) ) {
 		 *
 		 * @since 1.0.0
 		 */
-		function load_textdomain() {
+		public function load_textdomain() {
 			load_plugin_textdomain( 'custom-typekit-fonts' );
 		}
 

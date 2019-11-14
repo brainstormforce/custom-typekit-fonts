@@ -6,7 +6,7 @@
  * @package Bsf_Custom_Fonts
  */
 
-defined( 'ABSPATH' ) or exit;
+defined( 'ABSPATH' ) || exit;
 
 if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 
@@ -23,7 +23,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 		 * @since  1.0.0
 		 * @var (Object) Custom_Typekit_Fonts_Render
 		 */
-		private static $_instance = null;
+		private static $instance = null;
 
 		/**
 		 * Member Varible
@@ -50,11 +50,11 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 		 * @return object Class object.
 		 */
 		public static function get_instance() {
-			if ( ! isset( self::$_instance ) ) {
-				self::$_instance = new self();
+			if ( ! isset( self::$instance ) ) {
+				self::$instance = new self();
 			}
 
-			return self::$_instance;
+			return self::$instance;
 		}
 
 		/**
@@ -127,7 +127,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 		public function typekit_embed_css() {
 
 			if ( false !== $this->get_typekit_embed_url() ) {
-				wp_enqueue_style( 'custom-typekit-css', $this->get_typekit_embed_url(), array() );
+				wp_enqueue_style( 'custom-typekit-css', $this->get_typekit_embed_url(), array(), CUSTOM_TYPEKIT_FONTS_VER );
 			}
 
 		}
@@ -153,7 +153,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 		 *
 		 * @param array $custom_fonts custom fonts.
 		 */
-		function add_typekit_fonts( $custom_fonts ) {
+		public function add_typekit_fonts( $custom_fonts ) {
 
 			$kit_info = get_option( 'custom-typekit-fonts' );
 			if ( empty( $kit_info['custom-typekit-font-details'] ) ) {
@@ -217,7 +217,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 		 * @since  1.0.3
 		 * @param array $bb_fonts font families added by bb.
 		 */
-		function bb_custom_fonts( $bb_fonts ) {
+		public function bb_custom_fonts( $bb_fonts ) {
 
 			$kit_list     = get_option( 'custom-typekit-fonts' );
 			$fonts        = $kit_list['custom-typekit-font-details'];
@@ -243,7 +243,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 		 * @since  1.1.0
 		 * @param array $fonts font families selected.
 		 */
-		function remove_typekit_font_google_url( $fonts ) {
+		public function remove_typekit_font_google_url( $fonts ) {
 
 			$kit_list = get_option( 'custom-typekit-fonts', array() );
 			if ( ! empty( $kit_list['custom-typekit-font-details'] ) ) {

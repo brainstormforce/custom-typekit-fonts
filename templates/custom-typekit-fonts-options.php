@@ -72,14 +72,14 @@ $kit_info = get_option( 'custom-typekit-fonts' );
 												foreach ( $kit_info['custom-typekit-font-details'] as $font ) :
 
 													echo '<tr>';
-													echo '<td>' . $font['family'] . '</td>';
-													echo '<td>' . $font['fallback'] . '</td>';
+													echo '<td>' . esc_html( $font['family'] ) . '</td>';
+													echo '<td>' . esc_html( $font['fallback'] ) . '</td>';
 													echo '<td>';
 													$comma_sep_arr = array();
 													foreach ( $font['weights'] as $weight ) :
 														$comma_sep_arr[] = $weight;
 													endforeach;
-													echo join( ', ', $comma_sep_arr );
+													echo esc_html( join( ', ', $comma_sep_arr ) );
 													echo '</td>';
 													echo '</tr>';
 
@@ -109,7 +109,7 @@ $kit_info = get_option( 'custom-typekit-fonts' );
 								<p>
 									<?php
 									/* translators: %1$s: typekit site url. */
-									printf( __( 'You can get the Project ID <a href=%1$s target="_blank" >here</a> from your Typekit Account. <b>Project ID</b> can be found next to the kit names.', 'custom-typekit-fonts' ), 'https://fonts.adobe.com/my_fonts?browse_mode=all#web_projects-section' );
+									printf( esc_html__( 'You can get the Project ID <a href=%1$s target="_blank" >here</a> from your Typekit Account. <b>Project ID</b> can be found next to the kit names.', 'custom-typekit-fonts' ), 'https://fonts.adobe.com/my_fonts?browse_mode=all#web_projects-section' );
 									?>
 								</p>
 
@@ -127,7 +127,7 @@ $kit_info = get_option( 'custom-typekit-fonts' );
 								<p> 
 								<?php
 									/* translators: %1$s: Astra Theme url. */
-									printf( __( '1) Once you get the Kit Details, all the fonts will be listed in the customizer under typography for only <a href="%1$s" target="_blank" rel="noopener"> Astra </a> WordPress Theme users', 'custom-typekit-fonts' ), 'https://wpastra.com' );
+									printf( esc_html__( '1) Once you get the Kit Details, all the fonts will be listed in the customizer under typography for only <a href="%1$s" target="_blank" rel="noopener"> Astra </a> WordPress Theme users', 'custom-typekit-fonts' ), 'https://wpastra.com' );
 								?>
 								</p>
 								<p>

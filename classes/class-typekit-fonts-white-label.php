@@ -70,7 +70,7 @@ if ( ! class_exists( 'Typekit_Fonts_White_Label' ) ) :
 		 * @param array $plugins Plugins Array.
 		 * @return array
 		 */
-		function plugins_page( $plugins ) {
+		public function plugins_page( $plugins ) {
 
 			if ( ! is_callable( 'Astra_Ext_White_Label_Markup::get_whitelabel_string' ) ) {
 				return $plugins;
@@ -115,7 +115,7 @@ if ( ! class_exists( 'Typekit_Fonts_White_Label' ) ) :
 		 * @param string $title  custom typekit fonts menu title.
 		 * @return string $title updated custom typekit fonts menu
 		 */
-		function white_label_custom_typekit_fonts_title( $title ) {
+		public function white_label_custom_typekit_fonts_title( $title ) {
 
 			if ( is_callable( 'Astra_Ext_White_Label_Markup::get_whitelabel_string' ) ) {
 				$name = Astra_Ext_White_Label_Markup::get_whitelabel_string( 'custom-typekit-fonts', 'name' );
