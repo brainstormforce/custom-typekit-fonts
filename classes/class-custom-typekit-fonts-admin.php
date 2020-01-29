@@ -65,7 +65,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Admin' ) ) :
 		 */
 		public function set_custom_typekit_fonts_notice() {
 
-			// Notice for Custom Typekit Fonts action.
+			// Notice for the Custom Typekit Fonts action.
 			if ( isset( $_POST['custom-typekit-fonts-nonce'] ) && wp_verify_nonce( $_POST['custom-typekit-fonts-nonce'], 'custom-typekit-fonts' ) ) {
 
 				if ( isset( $_POST['custom-typekit-fonts-submitted'] ) ) {
