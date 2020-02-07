@@ -4,7 +4,7 @@
 **Tags:** custom adobe fonts, theme custom fonts, unlimited typekit custom fonts  
 **Requires at least:** 4.4  
 **Tested up to:** 5.3.2  
-**Stable tag:** 1.0.14  
+**Stable tag:** 1.0.15  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -48,6 +48,9 @@ If you're not using any of the supported plugins and theme, you can write the cu
 7. Select any Adobe font from Beaver Builder Theme Customizer
 
 ## Changelog ##
+
+### v1.0.15 ###
+- Fix: Settings page's sections showing markup instead of content.
 
 ### v1.0.14 ###
 - Improvement: Hardened the security of plugin
