@@ -49,6 +49,9 @@ If you're not using any of the supported plugins and theme, you can write the cu
 
 ## Changelog ##
 
+### v1.0.16 ###
+- Improvement: Updated warning strings incase of wrong project ID.
+
 ### v1.0.15 ###
 - Fix: Settings page's sections showing markup instead of content.
 
