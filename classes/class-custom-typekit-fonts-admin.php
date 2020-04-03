@@ -77,7 +77,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Admin' ) ) :
 						if ( isset( $_POST['custom-typekit-id-notice'] ) && $_POST['custom-typekit-id-notice'] ) {
 							?>
 							<div class="notice notice-error is-dismissible">
-								<p><?php esc_html_e( 'Please Enter the Valid Kit ID to get the kit details.', 'custom-typekit-fonts' ); ?></p>
+								<p><?php esc_html_e( 'Please enter the valid Project ID to get the kit details.', 'custom-typekit-fonts' ); ?></p>
 							</div>
 							<?php
 						} elseif ( isset( $_POST['custom-typekit-empty-notice'] ) && $_POST['custom-typekit-empty-notice'] ) {
