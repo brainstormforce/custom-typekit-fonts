@@ -1,15 +1,15 @@
-# Copyright (C) 2019 Brainstorm Force
+# Copyright (C) 2020 Brainstorm Force
 # This file is distributed under the same license as the Custom Adobe Fonts (Typekit) package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Custom Adobe Fonts (Typekit) 1.0.13\n"
+"Project-Id-Version: Custom Adobe Fonts (Typekit) 1.0.17\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/custom-typekit-fonts\n"
-"POT-Creation-Date: 2019-08-16 06:03:06+00:00\n"
+"POT-Creation-Date: 2020-06-09 13:09:34+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2019-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2020-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en\n"
@@ -25,8 +25,52 @@ msgstr ""
 "X-Textdomain-Support: yes\n"
 "X-Generator: grunt-wp-i18n 1.0.3\n"
 
+#: admin/bsf-analytics/class-bsf-analytics.php:183
+#. translators: %s product name
+msgid ""
+"Want to help make <strong>%1s</strong> even more awesome? Allow us to "
+"collect non-sensitive diagnostic data and usage information. "
+msgstr ""
+
+#: admin/bsf-analytics/class-bsf-analytics.php:186
+msgid "This will be applicable for all sites from the network."
+msgstr ""
+
+#: admin/bsf-analytics/class-bsf-analytics.php:208
+#. translators: %s usage doc link
+msgid " Know More."
+msgstr ""
+
+#: admin/bsf-analytics/class-bsf-analytics.php:215
+msgid "Yes! Allow it"
+msgstr ""
+
+#: admin/bsf-analytics/class-bsf-analytics.php:223
+msgid "No Thanks"
+msgstr ""
+
+#: admin/bsf-analytics/class-bsf-analytics.php:292
+msgid "Every two days"
+msgstr ""
+
+#: admin/bsf-analytics/class-bsf-analytics.php:346
+msgid "Usage Tracking"
+msgstr ""
+
+#: admin/bsf-analytics/class-bsf-analytics.php:377
+msgid "Allow Brainstorm Force products to track non-sensitive usage tracking data."
+msgstr ""
+
+#: admin/bsf-analytics/class-bsf-analytics.php:380
+msgid " This will be applicable for all sites from the network."
+msgstr ""
+
+#: admin/bsf-analytics/class-bsf-analytics.php:385
+msgid "Learn More."
+msgstr ""
+
 #: classes/class-custom-typekit-fonts-admin.php:80
-msgid "Please Enter the Valid Kit ID to get the kit details."
+msgid "Please enter the valid Project ID to get the kit details."
 msgstr ""
 
 #: classes/class-custom-typekit-fonts-admin.php:86
@@ -44,6 +88,10 @@ msgstr ""
 
 #: classes/class-custom-typekit-fonts-render.php:95
 msgid "Typekit Fonts"
+msgstr ""
+
+#: lib/notices/class-astra-notices.php:125
+msgid "WordPress Nonce not validated."
 msgstr ""
 
 #: templates/custom-typekit-fonts-options.php:17

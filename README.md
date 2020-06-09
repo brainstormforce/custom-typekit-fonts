@@ -3,8 +3,8 @@
 **Donate link:** https://www.paypal.me/BrainstormForce  
 **Tags:** custom adobe fonts, theme custom fonts, unlimited typekit custom fonts  
 **Requires at least:** 4.4  
-**Tested up to:** 5.4  
-**Stable tag:** 1.0.16  
+**Tested up to:** 5.4.1  
+**Stable tag:** 1.0.17  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -49,60 +49,63 @@ If you're not using any of the supported plugins and theme, you can write the cu
 
 ## Changelog ##
 
-### v1.0.16 ###
+### 1.0.17 ###
+- New: Users can now share non-personal usage data to help us test and develop better products. ( https://store.brainstormforce.com/usage-tracking/?utm_source=wp_dashboard&utm_medium=general_settings&utm_campaign=usage_tracking )
+
+### 1.0.16 ###
 - Improvement: Updated warning strings incase of wrong project ID.
 
-### v1.0.15 ###
+### 1.0.15 ###
 - Fix: Settings page's sections showing markup instead of content.
 
-### v1.0.14 ###
+### 1.0.14 ###
 - Improvement: Hardened the security of plugin
 - Improvement: Compatibility with latest WordPress PHP_CodeSniffer rules
 
-### v1.0.13 ###
+### 1.0.13 ###
 - Fix: Console errors in customizer & frontend on adobe font(TypeKit) selection. 
 
-### v1.0.12 ###
+### 1.0.12 ###
 - Fix: Load Custom Adobe Fonts (Typekit) menu after Astra Options.
 - Fix: Console errors in customizer while selecting font. 
 
-### v1.0.11 ###
+### 1.0.11 ###
 - Improvement: Allow whitelabel settings to be setup from using constants when using Astra Pro.
 
-### v1.0.10 ###
+### 1.0.10 ###
 - Fix: Remove typekit font from the Astra Theme's google fonts URL.
 
-### v1.0.9 ###
+### 1.0.9 ###
 - Improvement: Use CSS embed method for enqueueing TypeKit fonts. This should remove the slight delay in displaying the TypeKit fonts on the page,
 - Fix: Post URL in the Block Editor goes behind the Editor Top Bar.
 
-### v1.0.8 ###
+### 1.0.8 ###
 - Fixed: A few TypeKit fonts not being rendered correctly.
 
-### v1.0.7 ###
+### 1.0.7 ###
 - Improvement: Enqueue typekit fonts in the block editor.
 
-### v1.0.6 ###
+### 1.0.6 ###
 - Fixed: Update font name to correct font family to be rendered correctly for all the fonts.
 - Fixed: Typekit fonts not rendered ccorrectly in Beaver Builder and Elementor settings.
 
-### v1.0.5 ###
+### 1.0.5 ###
 - Fixed: Fatal error: Uncaught Error: Class ‘Bsf_Custom_Fonts_Taxonomy’ not found
 
-### v1.0.4 ###
+### 1.0.4 ###
 - Fixed: Added Fonts in separate group for Elementor fonts & global fonts selection.
 
-### v1.0.3 ###
+### 1.0.3 ###
 - New: Added compatibility with Beaver Builder Theme, Beaver Builder Plugin and Elementor.
 
-### v1.0.2 ###
+### 1.0.2 ###
 - Typekit fonts support added for all themes.
 - White Label support added from the [Astra Pro](https://wpastra.com/pro/) plugin.
 
-### v1.0.1 ###
+### 1.0.1 ###
 - Custom Typekit Fonts wp admin menu renamed to Typekit Fonts.
 - Empty Kit notice added if there is not fonts in the Kit.
 - Php waring if there is no font list handled.
 
-### v1.0.0 ###
+### 1.0.0 ###
 - Initial release
