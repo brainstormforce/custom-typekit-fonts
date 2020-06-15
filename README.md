@@ -51,6 +51,7 @@ If you're not using any of the supported plugins and theme, you can write the cu
 
 ### 1.0.17 ###
 - New: Users can now share non-personal usage data to help us test and develop better products. ( https://store.brainstormforce.com/usage-tracking/?utm_source=wp_dashboard&utm_medium=general_settings&utm_campaign=usage_tracking )
+- Fix: "PHP Notice: Trying to access array offset on value of type bool" when user is migrating from 1.0.8 or lower version.  
 
 ### 1.0.16 ###
 - Improvement: Updated warning strings incase of wrong project ID.

@@ -96,14 +96,12 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Update' ) ) {
 			$typekit                               = new Custom_Typekit_Fonts();
 			$custom_typekit                        = get_option( 'custom-typekit-fonts' );
 			$option                                = array();
-			$option['custom-typekit-font-id']      = sanitize_text_field( $custom_typekit['custom-typekit-font-id'] );
-			$option['custom-typekit-font-details'] = $typekit->get_custom_typekit_details( $custom_typekit['custom-typekit-font-id'] );
+			$option['custom-typekit-font-id']      = isset( $custom_typekit['custom-typekit-font-id'] ) ? sanitize_text_field( $custom_typekit['custom-typekit-font-id'] ) : '';
+			$option['custom-typekit-font-details'] = isset( $custom_typekit['custom-typekit-font-id'] ) ? $typekit->get_custom_typekit_details( $custom_typekit['custom-typekit-font-id'] ) : '';
 
 			update_option( 'custom-typekit-fonts', $option );
 		}
-
 	}
-
 }
 
 /**
