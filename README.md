@@ -3,8 +3,8 @@
 **Donate link:** https://www.paypal.me/BrainstormForce  
 **Tags:** custom adobe fonts, theme custom fonts, unlimited typekit custom fonts  
 **Requires at least:** 4.4  
-**Tested up to:** 5.4.2  
-**Stable tag:** 1.0.17  
+**Tested up to:** 5.5  
+**Stable tag:** 1.0.18  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
@@ -48,6 +48,9 @@ If you're not using any of the supported plugins and theme, you can write the cu
 7. Select any Adobe font from Beaver Builder Theme Customizer
 
 ## Changelog ##
+
+### 1.0.18 ###
+- Fix: Fixed compatibility with other plugins with respect to the admin notice.
 
 ### 1.0.17 ###
 - New: Users can now share non-personal usage data to help us test and develop better products. ( https://store.brainstormforce.com/usage-tracking/?utm_source=wp_dashboard&utm_medium=general_settings&utm_campaign=usage_tracking )
