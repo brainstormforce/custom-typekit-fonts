@@ -3,7 +3,7 @@
 **Donate link:** https://www.paypal.me/BrainstormForce  
 **Tags:** custom adobe fonts, theme custom fonts, unlimited typekit custom fonts  
 **Requires at least:** 4.4  
-**Tested up to:** 5.5  
+**Tested up to:** 5.6  
 **Stable tag:** 1.0.18  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
@@ -17,9 +17,9 @@ This plugin helps you easily embed adobe fonts easily in your WordPress website.
 Currently it works with:
 
 * <a href="https://wpastra.com/?utm_source=wp-repo&utm_campaign=custom-typekit-fonts&utm_medium=description">Astra Theme</a>
-* <a href="https://www.wpbeaverbuilder.com/?fla=713">Beaver Builder Theme</a>
-* <a href="https://www.wpbeaverbuilder.com/?fla=713">Beaver Builder Plugin</a>
-* <a href="https://elementor.com/?ref=1352">Elementor Page Builder</a>
+* <a href="https://www.wpbeaverbuilder.com/">Beaver Builder Theme</a>
+* <a href="https://www.wpbeaverbuilder.com/">Beaver Builder Plugin</a>
+* <a href="https://elementor.com/">Elementor Page Builder</a>
 
 How does it work?
 
