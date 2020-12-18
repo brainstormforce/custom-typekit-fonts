@@ -2,7 +2,7 @@
     "name": "brainstormforce/custom-typekit-fonts",
     "description": "Custom Adobe Fonts allows you to extends the fonts supports from the Adobe Fonts.",
     "require-dev": {
-        "dealerdirect/phpcodesniffer-composer-installer": "^0.4.4",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
         "wp-coding-standards/wpcs": "dev-master",
         "phpcompatibility/phpcompatibility-wp": "*"
     },
