@@ -3,7 +3,7 @@
 **Donate link:** https://www.paypal.me/BrainstormForce  
 **Tags:** custom adobe fonts, theme custom fonts, unlimited typekit custom fonts  
 **Requires at least:** 4.4  
-**Tested up to:** 5.6  
+**Tested up to:** 5.7  
 **Stable tag:** 1.0.18  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
@@ -40,7 +40,7 @@ If you're not using any of the supported plugins and theme, you can write the cu
 ## Screenshots ##
 
 1. Get your Project ID
-2. Enter your Project ID 
+2. Enter your Project ID
 3. Get all published kit details from your Adobe ID
 4. Select any Adobe font from Astra Theme Customizer
 5. Select any Adobe font from Elementor
@@ -54,7 +54,7 @@ If you're not using any of the supported plugins and theme, you can write the cu
 
 ### 1.0.17 ###
 - New: Users can now share non-personal usage data to help us test and develop better products. ( https://store.brainstormforce.com/usage-tracking/?utm_source=wp_dashboard&utm_medium=general_settings&utm_campaign=usage_tracking )
-- Fix: "PHP Notice: Trying to access array offset on value of type bool" when user is migrating from 1.0.8 or lower version.  
+- Fix: "PHP Notice: Trying to access array offset on value of type bool" when user is migrating from 1.0.8 or lower version.
 
 ### 1.0.16 ###
 - Improvement: Updated warning strings incase of wrong project ID.
@@ -67,11 +67,11 @@ If you're not using any of the supported plugins and theme, you can write the cu
 - Improvement: Compatibility with latest WordPress PHP_CodeSniffer rules
 
 ### 1.0.13 ###
-- Fix: Console errors in customizer & frontend on adobe font(TypeKit) selection. 
+- Fix: Console errors in customizer & frontend on adobe font(TypeKit) selection.
 
 ### 1.0.12 ###
 - Fix: Load Custom Adobe Fonts (Typekit) menu after Astra Options.
-- Fix: Console errors in customizer while selecting font. 
+- Fix: Console errors in customizer while selecting font.
 
 ### 1.0.11 ###
 - Improvement: Allow whitelabel settings to be setup from using constants when using Astra Pro.
