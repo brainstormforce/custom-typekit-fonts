@@ -29,6 +29,8 @@ How does it work?
 
 If you're not using any of the supported plugins and theme, you can write the custom CSS to apply the fonts.
 
+[Try it out on a free dummy site](https://bsf.io/custom-typekit-fonts-demo)
+
 == Installation ==
 
 1. Upload the plugin files to the `/wp-content/plugins/custom-typekit-fonts` directory, or install the plugin through the WordPress plugins screen directly.
