@@ -208,6 +208,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 				foreach ( $kit_list['custom-typekit-font-details'] as $font => $properties ) {
 					echo '<option value="\'' . esc_attr( $font ) . '\',' . esc_attr( $properties['fallback'] ) . '" ' . selected( $font, $value, false ) . '>' . esc_html( $font ) . '</option>';
 				}
+				echo '</optgroup>';
 			}
 		}
 

@@ -51,6 +51,9 @@ If you're not using any of the supported plugins and theme, you can write the cu
 
 == Changelog ==
 
+= 1.0.19 =
+- Fix: Resolved option group markup issue for the font list in Astra customizer font control.
+
 = 1.0.18 =
 - Fix: Fixed compatibility with other plugins with respect to the admin notice.
 
