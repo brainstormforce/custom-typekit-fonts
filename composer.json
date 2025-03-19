@@ -11,4 +11,3 @@
         "lint": "phpcs --standard=phpcs.xml.dist --report-summary --report-source"
     }
 }
-  
