@@ -4,7 +4,7 @@
 **Tags:** custom adobe fonts, theme custom fonts, unlimited typekit custom fonts
 **Requires at least:** 4.4
 **Tested up to:** 6.7
-**Stable tag:** 1.0.18
+**Stable tag:** 1.0.19
 **License:** GPLv2 or later
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,6 +48,9 @@ If you're not using any of the supported plugins and theme, you can write the cu
 7. Select any Adobe font from Beaver Builder Theme Customizer
 
 ## Changelog ##
+
+### 1.0.19 ###
+- Fix: Fixed security issue from astra-notice library.
 
 ### 1.0.18 ###
 - Fix: Fixed compatibility with other plugins with respect to the admin notice.
