@@ -181,7 +181,6 @@ if ( ! class_exists( 'Custom_Typekit_Fonts' ) ) {
 		public function load_textdomain() {
 			load_plugin_textdomain( 'custom-typekit-fonts' );
 		}
-
 	}
 
 	/**

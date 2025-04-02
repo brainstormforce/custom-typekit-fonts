@@ -183,7 +183,6 @@ if ( ! class_exists( 'Typekit_Fonts_White_Label' ) ) :
 		public static function add_white_lavel_form( $settings = array() ) {
 			require_once CUSTOM_TYPEKIT_FONTS_DIR . 'templates/white-label.php';
 		}
-
 	}
 
 	/**

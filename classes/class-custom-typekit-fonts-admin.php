@@ -55,7 +55,6 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Admin' ) ) :
 			add_action( 'admin_menu', array( $this, 'register_custom_fonts_menu' ), 101 );
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 			add_action( 'admin_notices', array( $this, 'set_custom_typekit_fonts_notice' ) );
-
 		}
 
 		/**
@@ -139,9 +138,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Admin' ) ) :
 			wp_enqueue_style( 'custom-typekit-fonts-css', CUSTOM_TYPEKIT_FONTS_URI . 'assets/css/custom-typekit-fonts.css', array(), CUSTOM_TYPEKIT_FONTS_VER );
 
 			wp_enqueue_script( 'custom-typekit-fonts-js', CUSTOM_TYPEKIT_FONTS_URI . 'assets/js/custom-typekit-fonts.js', array( 'jquery-ui-tooltip' ), CUSTOM_TYPEKIT_FONTS_VER, false );
-
 		}
-
 	}
 
 

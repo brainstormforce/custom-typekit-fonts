@@ -48,7 +48,6 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Update' ) ) {
 			} else {
 				add_action( 'init', array( $this, 'init' ), 5 );
 			}
-
 		}
 
 		/**

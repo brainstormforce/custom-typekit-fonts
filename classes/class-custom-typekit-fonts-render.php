@@ -129,7 +129,6 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 			if ( false !== $this->get_typekit_embed_url() ) {
 				wp_enqueue_style( 'custom-typekit-css', $this->get_typekit_embed_url(), array(), CUSTOM_TYPEKIT_FONTS_VER );
 			}
-
 		}
 
 		/**
@@ -166,7 +165,6 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 			}
 			$new_custom_fonts = wp_parse_args( $kit_info['custom-typekit-font-details'], $custom_fonts );
 			return $new_custom_fonts;
-
 		}
 
 		/**
@@ -268,8 +266,3 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 	Custom_Typekit_Fonts_Render::get_instance();
 
 endif;
-
-
-
-
-
