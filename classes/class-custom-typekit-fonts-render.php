@@ -75,6 +75,8 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 			// Elementor page builder.
 			add_filter( 'elementor/fonts/groups', array( $this, 'elementor_group' ) );
 			add_filter( 'elementor/fonts/additional_fonts', array( $this, 'add_elementor_fonts' ) );
+			// Block Editor
+			add_filter( 'wp_theme_json_data_theme', array( $this, 'add_block_editor_fonts' ) );
 
 			add_action( 'enqueue_block_editor_assets', array( $this, 'typekit_embed_css' ) );
 			// Astra filter before creating google fonts URL.
@@ -235,6 +237,52 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 			endif;
 
 			return array_merge( $bb_fonts, $custom_fonts );
+		}
+		
+		/**
+		 * Add Adobe Fonts to block editor options
+		 *
+		 * @since  x.y.z
+		 * @param WP_Theme_JSON_Data $theme_json theme.json data from the theme.
+		 */
+		public function add_block_editor_fonts( $theme_json ) {
+			$kit_info = get_option( 'custom-typekit-fonts' );
+			$fonts = $kit_info['custom-typekit-font-details'];
+			if ( empty( $fonts ) ) {
+				return $theme_json;
+			}
+			$new_data = [
+				'version'  => 3,
+				'settings' => [
+					'typography' => [
+						'fontFamilies' => [],
+					],
+				],
+			];
+			foreach ( $fonts as $font_family_name => $font ) {
+				$font_definition = [
+					'fontFamily' => $font['fallback'],
+					'name' => $font['family'],
+					'slug' => $font['slug'] ?? explode(',', $font['fallback'])[0],
+				];
+
+				if(!empty($font['variations'])) {
+					$font_definition['fontFace'] = [];
+					foreach($font['variations'] as $style => $weights) {
+						foreach($weights as $weight) {
+							$font_definition['fontFace'][] = [
+								'fontFamily' => $font['family'],
+								'fontStyle' => $style,
+								'fontWeight' => $weight,
+							];
+						}
+					}
+				}
+				
+				$new_data['settings']['typography']['fontFamilies'][] = $font_definition;
+			}
+			
+			return $theme_json->update_with( $new_data );
 		}
 
 		/**
