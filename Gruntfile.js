@@ -42,12 +42,65 @@ module.exports = function( grunt ) {
 				}
 			}
 		},
+
+		clean: {
+			main: ['build/<%= pkg.name %>'],
+			post_build: ['build/']
+		},
+
+		copy: {
+			main: {
+				options: {
+					mode: true
+				},
+				src: [
+					'**',
+					'!node_modules/**',
+					'!build/**',
+					'!.git/**',
+					'!.github/**',
+					'!*.zip',
+					'!Gruntfile.js',
+					'!package.json',
+					'!package-lock.json',
+					'!.gitignore',
+					'!.gitattributes',
+					'!composer.json',
+					'!composer.lock',
+					'!phpcs.xml.dist',
+					'!*.log'
+				],
+				dest: 'build/<%= pkg.name %>/'
+			}
+		},
+
+		compress: {
+			main: {
+				options: {
+					archive: '<%= pkg.name %>-<%= pkg.version %>.zip',
+					mode: 'zip'
+				},
+				files: [
+					{
+						expand: true,
+						cwd: 'build/',
+						src: ['<%= pkg.name %>/**'],
+						dest: '/'
+					}
+				]
+			}
+		},
 	} );
 
 	grunt.loadNpmTasks( 'grunt-wp-i18n' );
 	grunt.loadNpmTasks( 'grunt-wp-readme-to-markdown' );
+	grunt.loadNpmTasks( 'grunt-contrib-clean' );
+	grunt.loadNpmTasks( 'grunt-contrib-copy' );
+	grunt.loadNpmTasks( 'grunt-contrib-compress' );
+
 	grunt.registerTask( 'i18n', ['addtextdomain', 'makepot'] );
 	grunt.registerTask( 'readme', ['wp_readme_to_markdown'] );
+	grunt.registerTask( 'release', ['clean:main', 'copy', 'compress', 'clean:post_build'] );
 
 	grunt.util.linefeed = '\n';
 
