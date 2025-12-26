@@ -16,6 +16,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 	class Custom_Typekit_Fonts_Render {
 
 		const TYPEKIT_EMBED_BASE = 'https://use.typekit.net/%s.css';
+		const TYPEKIT_EMBED_JS_BASE = 'https://use.typekit.net/%s.js';
 
 		/**
 		 * Instance of Custom_Typekit_Fonts_Render
@@ -120,14 +121,37 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 		}
 
 		/**
-		 * Enqueue Typekit CSS.
+		 * Enqueue Typekit CSS or JavaScript.
 		 *
 		 * @return void
 		 */
 		public function typekit_embed_css() {
 
-			if ( false !== $this->get_typekit_embed_url() ) {
-				wp_enqueue_style( 'custom-typekit-css', $this->get_typekit_embed_url(), array(), CUSTOM_TYPEKIT_FONTS_VER );
+			$kit_info = get_option( 'custom-typekit-fonts' );
+
+			if ( empty( $kit_info['custom-typekit-font-details'] ) || empty( $kit_info['custom-typekit-font-id'] ) ) {
+				return;
+			}
+
+			$embed_method = isset( $kit_info['custom-typekit-embed-method'] ) ? $kit_info['custom-typekit-embed-method'] : 'css';
+			$kit_id = $kit_info['custom-typekit-font-id'];
+
+			if ( 'javascript' === $embed_method ) {
+
+				$js_url = sprintf( self::TYPEKIT_EMBED_JS_BASE, $kit_id );
+				wp_enqueue_script( 'custom-typekit-js', $js_url, array(), CUSTOM_TYPEKIT_FONTS_VER, false );
+
+				// Add inline script to load Typekit.
+				$inline_script = sprintf(
+					'try{Typekit.load({ async: true });}catch(e){}',
+					$kit_id
+				);
+				wp_add_inline_script( 'custom-typekit-js', $inline_script, 'after' );
+			} else {
+				// Use CSS embed method (default).
+				if ( false !== $this->get_typekit_embed_url() ) {
+					wp_enqueue_style( 'custom-typekit-css', $this->get_typekit_embed_url(), array(), CUSTOM_TYPEKIT_FONTS_VER );
+				}
 			}
 
 		}
