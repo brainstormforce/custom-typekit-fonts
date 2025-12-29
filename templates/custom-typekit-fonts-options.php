@@ -46,6 +46,30 @@ $kit_info = get_option( 'custom-typekit-fonts' );
 									</td>
 								</tr>
 
+								<tr valign="top">
+									<th scope="row">
+										<label><?php esc_html_e( 'Embed Method:', 'custom-typekit-fonts' ); ?></label>
+										<i class="custom-typekit-fonts-help dashicons dashicons-editor-help"
+										title="<?php echo esc_attr__( 'Choose CSS for standard fonts. Choose JavaScript if your fonts require Dynamic Subsetting (variable fonts or fonts with many characters/languages).', 'custom-typekit-fonts' ); ?>"></i>
+									</th>
+									<td>
+										<?php
+										$embed_method = isset( $kit_info['custom-typekit-embed-method'] ) ? $kit_info['custom-typekit-embed-method'] : 'css';
+										?>
+										<label style="margin-right: 15px;">
+											<input type="radio" name="custom-typekit-embed-method" value="css" <?php checked( $embed_method, 'css' ); ?>>
+											<?php esc_html_e( 'CSS (Default)', 'custom-typekit-fonts' ); ?>
+										</label>
+										<label>
+											<input type="radio" name="custom-typekit-embed-method" value="javascript" <?php checked( $embed_method, 'javascript' ); ?>>
+											<?php esc_html_e( 'JavaScript (For Dynamic Subsetting)', 'custom-typekit-fonts' ); ?>
+										</label>
+										<p class="description">
+											<?php esc_html_e( 'If your fonts are not loading, try switching to JavaScript embed method. This is required for fonts with Dynamic Subsetting enabled in Adobe Fonts.', 'custom-typekit-fonts' ); ?>
+										</p>
+									</td>
+								</tr>
+
 								<?php if ( ! empty( $kit_info['custom-typekit-font-details'] ) ) : ?>
 									<tr>
 										<th>
