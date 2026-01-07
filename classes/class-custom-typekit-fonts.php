@@ -62,7 +62,8 @@ if ( ! class_exists( 'Custom_Typekit_Fonts' ) ) {
 
 						$option                                = array();
 						$option['custom-typekit-font-id']      = sanitize_text_field( $_POST['custom-typekit-font-id'] );
-						$option['custom-typekit-embed-method'] = isset( $_POST['custom-typekit-embed-method'] ) ? sanitize_text_field( $_POST['custom-typekit-embed-method'] ) : 'css';
+						$embed_method                          = isset( $_POST['custom-typekit-embed-method'] ) ? sanitize_text_field( $_POST['custom-typekit-embed-method'] ) : 'css';
+						$option['custom-typekit-embed-method'] = in_array( $embed_method, array( 'css', 'javascript' ), true ) ? $embed_method : 'css';
 						$option['custom-typekit-font-details'] = $this->get_custom_typekit_details( $option['custom-typekit-font-id'] );
 
 						if ( empty( $option['custom-typekit-font-details'] ) ) {

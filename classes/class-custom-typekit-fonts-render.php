@@ -142,10 +142,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 				wp_enqueue_script( 'custom-typekit-js', $js_url, array(), CUSTOM_TYPEKIT_FONTS_VER, false );
 
 				// Add inline script to load Typekit.
-				$inline_script = sprintf(
-					'try{Typekit.load({ async: true });}catch(e){}',
-					$kit_id
-				);
+				$inline_script = 'try{Typekit.load({ async: true });}catch(e){}';
 				wp_add_inline_script( 'custom-typekit-js', $inline_script, 'after' );
 			} else {
 				// Use CSS embed method (default).
