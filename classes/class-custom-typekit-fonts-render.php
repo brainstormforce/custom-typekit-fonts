@@ -15,7 +15,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 	 */
 	class Custom_Typekit_Fonts_Render {
 
-		const TYPEKIT_EMBED_BASE = 'https://use.typekit.net/%s.css';
+		const TYPEKIT_EMBED_BASE    = 'https://use.typekit.net/%s.css';
 		const TYPEKIT_EMBED_JS_BASE = 'https://use.typekit.net/%s.js';
 
 		/**
@@ -134,7 +134,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 			}
 
 			$embed_method = isset( $kit_info['custom-typekit-embed-method'] ) ? $kit_info['custom-typekit-embed-method'] : 'css';
-			$kit_id = $kit_info['custom-typekit-font-id'];
+			$kit_id       = $kit_info['custom-typekit-font-id'];
 
 			if ( 'javascript' === $embed_method ) {
 
