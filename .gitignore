@@ -20,3 +20,4 @@ astra
 
 # Ignore Composer's directories
 vendor/
+.claude/settings.local.json

@@ -68,7 +68,10 @@ module.exports = function( grunt ) {
 					'!composer.json',
 					'!composer.lock',
 					'!phpcs.xml.dist',
-					'!*.log'
+					'!*.log',
+					'!CLAUDE.md',
+					'!.claude/**',
+					'!internal-docs/**'
 				],
 				dest: 'build/<%= pkg.name %>/'
 			}
