@@ -1,0 +1,275 @@
+**Title:** `feat: Add GDPR-compliant conditional font loading — developer filter and admin disable toggle`
+
+**Branch:** `feat/gdpr-consent-loading`
+**Closes Issue:** *(paste issue number once created)*
+**Plugin Version:** 2.1.1
+**Reported via:** FreeScout ticket #1415083
+https://help.brainstormforce.com/conversation/1415083?folder_id=185
+User Issue Explanation: https://github.com/brainstormforce/custom-typekit-fonts/issues/72
+
+---
+
+### Background
+
+Adobe Fonts are currently loaded unconditionally on every frontend page load via `wp_enqueue_scripts`, making an outbound HTTP request to `https://use.typekit.net` before any user consent is obtained. This transmits visitors' IP addresses to Adobe's servers (a US-based third party) without a lawful basis, which is non-compliant with GDPR/DSGVO requirements for EU-facing websites.
+
+This PR addresses the issue with two complementary changes:
+- A **WordPress filter** (`custom_typekit_fonts_load_fonts`) for developer-level consent tool integration
+- An **admin settings toggle** ("Disable Automatic Font Output") for non-developer site owners
+
+Both changes are **additive only** — default behaviour for existing installations is completely unchanged.
+
+---
+
+### How the Plugin Currently Works (Context for Developers)
+
+Understanding the data flow is essential before reviewing the changes.
+
+**Settings are stored** as a single serialised array under the WordPress option key `custom-typekit-fonts`. The array contains:
+- `custom-typekit-font-id` — the Kit ID entered by the admin
+- `custom-typekit-embed-method` — `'css'` (default) or `'javascript'`
+- `custom-typekit-font-details` — fetched font family data from Adobe's API
+
+**Settings are saved** in `classes/class-custom-typekit-fonts.php` inside `options_setting()` (line 55), which runs on the `init` action. It verifies a nonce, reads `$_POST`, calls `get_custom_typekit_details()` to fetch font data from Adobe's API, then calls `update_option( 'custom-typekit-fonts', $option )` (line 95).
+
+**Fonts are rendered** in `classes/class-custom-typekit-fonts-render.php`. The `typekit_embed_css()` method (line 128) is hooked to `wp_enqueue_scripts` (line 68) in the constructor with no priority specified (defaults to 10). It reads the stored option and enqueues either a CSS stylesheet or a JavaScript file pointing to `https://use.typekit.net/{kit_id}.css` or `https://use.typekit.net/{kit_id}.js` respectively.
+
+**The settings page** is rendered via `templates/custom-typekit-fonts-options.php`, included from `Custom_Typekit_Fonts_Admin::typekit_options_page()`. The template reads `get_option( 'custom-typekit-fonts' )` directly and outputs a form with two existing fields: `custom-typekit-font-id` (text input) and `custom-typekit-embed-method` (radio buttons).
+
+---
+
+### Change 1 — Add `custom_typekit_fonts_load_fonts` filter
+
+**File:** `classes/class-custom-typekit-fonts-render.php`
+**Method:** `typekit_embed_css()`
+**Exact insertion point:** After the opening of the function, before the existing `get_option()` call (current line 130)
+
+**Current code (lines 128–137):**
+```php
+public function typekit_embed_css() {
+
+    $kit_info = get_option( 'custom-typekit-fonts' );
+
+    if ( empty( $kit_info['custom-typekit-font-details'] ) || empty( $kit_info['custom-typekit-font-id'] ) ) {
+        return;
+    }
+
+    $embed_method = isset( $kit_info['custom-typekit-embed-method'] ) ? $kit_info['custom-typekit-embed-method'] : 'css';
+    $kit_id       = $kit_info['custom-typekit-font-id'];
+```
+
+**Proposed change:**
+```php
+public function typekit_embed_css() {
+
+    /**
+     * Filter to conditionally prevent Adobe Fonts from loading on the frontend.
+     *
+     * This filter is provided for GDPR/DSGVO compliance. It allows developers to
+     * integrate with cookie consent tools (e.g. Borlabs Cookie, CCM19, Cookiebot)
+     * and prevent fonts from loading until the user has given explicit consent.
+     *
+     * By default, fonts load normally (returns true).
+     * Return false from this filter to suppress all font loading.
+     *
+     * @since 2.2.0
+     *
+     * @param bool $load_fonts Whether to load Adobe Fonts on this page load. Default true.
+     *
+     * @example
+     * // Suppress font loading until consent cookie is present:
+     * add_filter( 'custom_typekit_fonts_load_fonts', function( $load_fonts ) {
+     *     return isset( $_COOKIE['my_consent_tool_adobe_fonts'] );
+     * } );
+     */
+    if ( ! apply_filters( 'custom_typekit_fonts_load_fonts', true ) ) {
+        return;
+    }
+
+    $kit_info = get_option( 'custom-typekit-fonts' );
+
+    if ( empty( $kit_info['custom-typekit-font-details'] ) || empty( $kit_info['custom-typekit-font-id'] ) ) {
+        return;
+    }
+
+    $embed_method = isset( $kit_info['custom-typekit-embed-method'] ) ? $kit_info['custom-typekit-embed-method'] : 'css';
+    $kit_id       = $kit_info['custom-typekit-font-id'];
+```
+
+**Why before the `get_option()` call:** If consent has not been given, there is no reason to read the database option at all. Returning early before `get_option()` is both more correct and more efficient.
+
+---
+
+### Change 2 — Add admin toggle to `options_setting()` save handler
+
+**File:** `classes/class-custom-typekit-fonts.php`
+**Method:** `options_setting()`
+**Exact insertion point:** Lines 63–65, where the `$option` array is constructed (alongside the existing `custom-typekit-font-id` and `custom-typekit-embed-method` keys)
+
+**Current code (lines 63–67):**
+```php
+$option                                = array();
+$option['custom-typekit-font-id']      = sanitize_text_field( $_POST['custom-typekit-font-id'] );
+$embed_method                          = isset( $_POST['custom-typekit-embed-method'] ) ? sanitize_text_field( $_POST['custom-typekit-embed-method'] ) : 'css';
+$option['custom-typekit-embed-method'] = in_array( $embed_method, array( 'css', 'javascript' ), true ) ? $embed_method : 'css';
+$option['custom-typekit-font-details'] = $this->get_custom_typekit_details( $option['custom-typekit-font-id'] );
+```
+
+**Proposed change:**
+```php
+$option                                = array();
+$option['custom-typekit-font-id']      = sanitize_text_field( $_POST['custom-typekit-font-id'] );
+$embed_method                          = isset( $_POST['custom-typekit-embed-method'] ) ? sanitize_text_field( $_POST['custom-typekit-embed-method'] ) : 'css';
+$option['custom-typekit-embed-method'] = in_array( $embed_method, array( 'css', 'javascript' ), true ) ? $embed_method : 'css';
+// Checkboxes are absent from $_POST when unchecked — default to 0.
+$option['custom-typekit-disable-auto-load'] = isset( $_POST['custom-typekit-disable-auto-load'] ) ? 1 : 0;
+$option['custom-typekit-font-details'] = $this->get_custom_typekit_details( $option['custom-typekit-font-id'] );
+```
+
+**Why this placement:** The `$option` array is built fresh on every form save (line 63: `$option = array()`), so the new key must be explicitly included here. If it is not added, unchecking the box and saving would leave the old value in the database because `update_option()` replaces the whole array.
+
+---
+
+### Change 3 — Add admin toggle to `typekit_embed_css()` render check
+
+**File:** `classes/class-custom-typekit-fonts-render.php`
+**Method:** `typekit_embed_css()`
+**Exact insertion point:** After the `apply_filters` check added in Change 1, before the `get_option()` call
+
+**Proposed addition (combined with Change 1):**
+```php
+public function typekit_embed_css() {
+
+    // GDPR: Allow developers to suppress font loading via consent tool integration.
+    if ( ! apply_filters( 'custom_typekit_fonts_load_fonts', true ) ) {
+        return;
+    }
+
+    $kit_info = get_option( 'custom-typekit-fonts' );
+
+    if ( empty( $kit_info['custom-typekit-font-details'] ) || empty( $kit_info['custom-typekit-font-id'] ) ) {
+        return;
+    }
+
+    // GDPR: Respect the admin toggle — if auto-load is disabled, do not enqueue.
+    if ( ! empty( $kit_info['custom-typekit-disable-auto-load'] ) ) {
+        return;
+    }
+
+    $embed_method = isset( $kit_info['custom-typekit-embed-method'] ) ? $kit_info['custom-typekit-embed-method'] : 'css';
+    $kit_id       = $kit_info['custom-typekit-font-id'];
+    // ... rest of method unchanged
+```
+
+**Why after `get_option()`:** The admin setting is stored inside the same option array, so `get_option()` must run first before this check can read it. The filter check comes first because it requires no database read.
+
+---
+
+### Change 4 — Add toggle UI to the settings template
+
+**File:** `templates/custom-typekit-fonts-options.php`
+**Exact insertion point:** After the closing `</tr>` of the "Embed Method" row (which ends approximately at line 57 of the template), inside the `<tbody>` tag, before the Kit Details conditional block
+
+**Current structure (relevant section):**
+```html
+<!-- Embed Method row ends here -->
+</tr>
+
+<?php if ( ! empty( $kit_info['custom-typekit-font-details'] ) ) : ?>
+    <tr> <!-- Kit Details row -->
+```
+
+**Proposed addition (new table row to insert between them):**
+```php
+<tr valign="top">
+    <th scope="row">
+        <label for="custom-typekit-disable-auto-load">
+            <?php esc_html_e( 'Disable Automatic Font Output', 'custom-typekit-fonts' ); ?>
+        </label>
+        <i class="custom-typekit-fonts-help dashicons dashicons-editor-help"
+            title="<?php echo esc_attr__( 'When enabled, Adobe Fonts will not be loaded automatically on the frontend. Enable this for GDPR/DSGVO compliance to prevent fonts loading before user consent is given. You can then load the fonts manually after consent is obtained.', 'custom-typekit-fonts' ); ?>">
+        </i>
+    </th>
+    <td>
+        <label>
+            <input
+                type="checkbox"
+                id="custom-typekit-disable-auto-load"
+                name="custom-typekit-disable-auto-load"
+                value="1"
+                <?php checked( 1, isset( $kit_info['custom-typekit-disable-auto-load'] ) ? (int) $kit_info['custom-typekit-disable-auto-load'] : 0 ); ?>
+            />
+            <?php esc_html_e( 'Prevent Adobe Fonts from loading automatically on the frontend', 'custom-typekit-fonts' ); ?>
+        </label>
+        <p class="description">
+            <?php esc_html_e( 'Use this setting for GDPR compliance. When checked, no connection will be made to use.typekit.net until you load the fonts manually after obtaining user consent.', 'custom-typekit-fonts' ); ?>
+        </p>
+    </td>
+</tr>
+```
+
+**Important:** The form field name is `custom-typekit-disable-auto-load` — this matches exactly the `$_POST` key read in Change 2 and the option array key stored in the database.
+
+---
+
+### Summary of All Files Changed
+
+| File | Lines Affected | Change |
+|------|---------------|--------|
+| `classes/class-custom-typekit-fonts-render.php` | After line 129 (before `get_option`) and after line 136 (after empty check) | Add `apply_filters('custom_typekit_fonts_load_fonts', true)` check and `custom-typekit-disable-auto-load` option check inside `typekit_embed_css()` |
+| `classes/class-custom-typekit-fonts.php` | Line 66 (inside `$option` array build in `options_setting()`) | Add `$option['custom-typekit-disable-auto-load']` save, handling unchecked checkbox as `0` |
+| `templates/custom-typekit-fonts-options.php` | After Embed Method row, before Kit Details conditional | Add new `<tr>` with checkbox UI for the disable toggle |
+
+---
+
+### No Changes Needed In
+
+- `classes/class-custom-typekit-fonts-admin.php` — the admin class only registers the menu and enqueues admin assets. The form save logic lives entirely in `class-custom-typekit-fonts.php::options_setting()`.
+- Any JS or CSS asset files — no frontend scripting changes required.
+
+---
+
+### Default Behaviour — No Breaking Changes
+
+The filter defaults to `true` (fonts load as before). The checkbox defaults to unchecked/`0`. Existing installations after upgrading will behave identically to before unless they actively enable the toggle or use the filter.
+
+---
+
+### Test Plan
+
+**Test 1 — Existing behaviour unchanged (regression check)**
+1. Install the plugin, configure a Kit ID, leave "Disable Automatic Font Output" unchecked
+2. Visit the frontend
+3. Check page source or browser Network tab
+4. ✅ `https://use.typekit.net/{kit_id}.css` (or `.js`) loads as expected
+
+**Test 2 — Admin toggle: disable auto-load**
+1. Go to **Appearance → Adobe Fonts**
+2. Check "Prevent Adobe Fonts from loading automatically on the frontend" and save
+3. Visit the frontend
+4. Check page source or browser Network tab
+5. ✅ No request to `use.typekit.net` is made
+6. Uncheck the toggle and save, reload the frontend
+7. ✅ Fonts load again — toggle is reversible
+
+**Test 3 — Developer filter: consent-based loading**
+1. Add the following to `functions.php`:
+```php
+add_filter( 'custom_typekit_fonts_load_fonts', '__return_false' );
+```
+2. Visit the frontend
+3. ✅ No request to `use.typekit.net` is made
+4. Change to `'__return_true'` and reload
+5. ✅ Fonts load correctly
+
+**Test 4 — Toggle and filter interaction**
+1. Enable the admin toggle (disable auto-load)
+2. Also add a filter returning `true`
+3. ✅ Fonts should NOT load — admin toggle takes precedence (it sits inside `typekit_embed_css()` after the filter check, so both must pass for fonts to load)
+
+**Test 5 — Option persistence across saves**
+1. Check the disable toggle and save
+2. Edit the Kit ID (trigger a save)
+3. ✅ The disable toggle setting should persist — it is included in every `$option` array rebuild
+
+All file paths, line references, method names, and option key names have been verified directly against the `custom-typekit-fonts_2_1_1.zip` source.
