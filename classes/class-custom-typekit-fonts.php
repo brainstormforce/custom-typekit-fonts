@@ -60,13 +60,13 @@ if ( ! class_exists( 'Custom_Typekit_Fonts' ) ) {
 				if ( isset( $_POST['custom-typekit-fonts-submitted'] ) ) {
 					if ( sanitize_text_field( $_POST['custom-typekit-fonts-submitted'] ) == 'submitted' ) {
 
-						$option                                = array();
+						$option = array();
 						// Checkbox is absent from $_POST when unchecked — store 0 explicitly.
 						$option['custom-typekit-disable-auto-load'] = isset( $_POST['custom-typekit-disable-auto-load'] ) ? 1 : 0;
-						$option['custom-typekit-font-id']      = sanitize_text_field( $_POST['custom-typekit-font-id'] );
-						$embed_method                          = isset( $_POST['custom-typekit-embed-method'] ) ? sanitize_text_field( $_POST['custom-typekit-embed-method'] ) : 'css';
-						$option['custom-typekit-embed-method'] = in_array( $embed_method, array( 'css', 'javascript' ), true ) ? $embed_method : 'css';
-						$option['custom-typekit-font-details'] = $this->get_custom_typekit_details( $option['custom-typekit-font-id'] );
+						$option['custom-typekit-font-id']           = sanitize_text_field( $_POST['custom-typekit-font-id'] );
+						$embed_method                               = isset( $_POST['custom-typekit-embed-method'] ) ? sanitize_text_field( $_POST['custom-typekit-embed-method'] ) : 'css';
+						$option['custom-typekit-embed-method']      = in_array( $embed_method, array( 'css', 'javascript' ), true ) ? $embed_method : 'css';
+						$option['custom-typekit-font-details']      = $this->get_custom_typekit_details( $option['custom-typekit-font-id'] );
 
 						if ( empty( $option['custom-typekit-font-details'] ) ) {
 							$_POST['custom-typekit-empty-notice'] = true;
