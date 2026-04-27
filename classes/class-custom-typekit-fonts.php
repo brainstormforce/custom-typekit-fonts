@@ -5,6 +5,8 @@
  * @package Custom_Typekit_Fonts
  */
 
+defined( 'ABSPATH' ) || exit;
+
 if ( ! class_exists( 'Custom_Typekit_Fonts' ) ) {
 
 	/**
@@ -40,7 +42,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts' ) ) {
 			require_once CUSTOM_TYPEKIT_FONTS_DIR . 'classes/class-custom-typekit-fonts-render.php';
 			require_once CUSTOM_TYPEKIT_FONTS_DIR . 'classes/class-custom-typekit-fonts-update.php';
 
-			add_action( 'init', array( $this, 'options_setting' ) );
+			add_action( 'admin_init', array( $this, 'options_setting' ) );
 
 			$this->load_files();
 
@@ -54,6 +56,10 @@ if ( ! class_exists( 'Custom_Typekit_Fonts' ) ) {
 		 * @since 1.0.0
 		 */
 		public function options_setting() {
+
+			if ( ! current_user_can( 'manage_options' ) ) {
+				return;
+			}
 
 			if ( isset( $_POST['custom-typekit-fonts-nonce'] ) && wp_verify_nonce( $_POST['custom-typekit-fonts-nonce'], 'custom-typekit-fonts' ) ) {
 

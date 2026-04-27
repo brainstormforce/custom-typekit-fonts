@@ -77,7 +77,7 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 			add_filter( 'elementor/fonts/groups', array( $this, 'elementor_group' ) );
 			add_filter( 'elementor/fonts/additional_fonts', array( $this, 'add_elementor_fonts' ) );
 
-			add_action( 'enqueue_block_editor_assets', array( $this, 'typekit_embed_css' ) );
+			add_action( 'enqueue_block_editor_assets', array( $this, 'typekit_embed_block_editor_css' ) );
 			// Astra filter before creating google fonts URL.
 			add_filter( 'astra_google_fonts', array( $this, 'remove_typekit_font_google_url' ) );
 			add_filter( 'astra_google_fonts_selected', array( $this, 'remove_typekit_font_google_url' ) );
@@ -139,8 +139,10 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 			 * @since 2.2.0
 			 *
 			 * @param bool   $load_fonts   Whether to load Adobe Fonts on this page load.
-			 * @param string $kit_id       The configured Adobe Fonts Kit ID (may be empty).
-			 * @param string $embed_method 'css' or 'javascript'.
+			 * @param string $kit_id       The configured Adobe Fonts Kit ID. Empty string when no
+			 *                            kit is configured. Read-only — the plugin does not use a
+			 *                            modified value returned via this argument.
+			 * @param string $embed_method 'css' or 'javascript'. Read-only.
 			 */
 			$kit_info_for_filter = get_option( 'custom-typekit-fonts' );
 			$filter_kit_id       = isset( $kit_info_for_filter['custom-typekit-font-id'] ) ? $kit_info_for_filter['custom-typekit-font-id'] : '';
@@ -174,25 +176,50 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 				wp_add_inline_script( 'custom-typekit-js', $inline_script, 'after' );
 			} else {
 				// Use CSS embed method (default).
-				if ( false !== $this->get_typekit_embed_url() ) {
-					wp_enqueue_style( 'custom-typekit-css', $this->get_typekit_embed_url(), array(), CUSTOM_TYPEKIT_FONTS_VER );
-				}
+				wp_enqueue_style( 'custom-typekit-css', $this->get_typekit_embed_url( $kit_id ), array(), CUSTOM_TYPEKIT_FONTS_VER );
 			}
 
 		}
 
 		/**
-		 * Get Typekit CSS embed URL
+		 * Enqueue Typekit CSS or JavaScript for the block editor.
 		 *
-		 * @return String|Boolean If Kit ID is available the URL for typekit embed is returned.
+		 * Intentionally skips the GDPR filter and the "Disable Automatic Font Output"
+		 * toggle — those apply only to front-end visitor sessions. Font previews in
+		 * the Gutenberg editor are an authenticated admin context with no GDPR impact.
+		 *
+		 * @since 2.2.0
+		 * @return void
 		 */
-		private function get_typekit_embed_url() {
+		public function typekit_embed_block_editor_css() {
+
 			$kit_info = get_option( 'custom-typekit-fonts' );
-			if ( empty( $kit_info['custom-typekit-font-details'] ) ) {
-				return false;
+
+			if ( empty( $kit_info['custom-typekit-font-details'] ) || empty( $kit_info['custom-typekit-font-id'] ) ) {
+				return;
 			}
 
-			return sprintf( self::TYPEKIT_EMBED_BASE, $kit_info['custom-typekit-font-id'] );
+			$embed_method = isset( $kit_info['custom-typekit-embed-method'] ) ? $kit_info['custom-typekit-embed-method'] : 'css';
+			$kit_id       = $kit_info['custom-typekit-font-id'];
+
+			if ( 'javascript' === $embed_method ) {
+				$js_url        = sprintf( self::TYPEKIT_EMBED_JS_BASE, $kit_id );
+				$inline_script = 'try{Typekit.load({ async: true });}catch(e){}';
+				wp_enqueue_script( 'custom-typekit-js', $js_url, array(), CUSTOM_TYPEKIT_FONTS_VER, false );
+				wp_add_inline_script( 'custom-typekit-js', $inline_script, 'after' );
+			} else {
+				wp_enqueue_style( 'custom-typekit-css', sprintf( self::TYPEKIT_EMBED_BASE, $kit_id ), array(), CUSTOM_TYPEKIT_FONTS_VER );
+			}
+		}
+
+		/**
+		 * Get Typekit CSS embed URL.
+		 *
+		 * @param string $kit_id Adobe Fonts Kit ID.
+		 * @return string
+		 */
+		private function get_typekit_embed_url( $kit_id ) {
+			return sprintf( self::TYPEKIT_EMBED_BASE, $kit_id );
 		}
 
 		/**
