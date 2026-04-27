@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/BrainstormForce
 Tags: custom adobe fonts, theme custom fonts, unlimited typekit custom fonts
 Requires at least: 4.4
 Tested up to: 6.9
-Stable tag: 2.1.1
+Stable tag: 2.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -50,6 +50,10 @@ If you're not using any of the supported plugins and theme, you can write the cu
 7. Select any Adobe font from Beaver Builder Theme Customizer
 
 == Changelog ==
+
+= 2.2.0 =
+- New: Added `custom_typekit_fonts_load_fonts` filter for consent-based font loading (GDPR/DSGVO).
+- New: "Disable Automatic Font Output" admin setting under Appearance → Adobe Fonts.
 
 = 2.1.1 =
 - New: Added JavaScript embed method option for Adobe Fonts with Dynamic Subsetting support.

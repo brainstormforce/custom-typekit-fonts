@@ -127,9 +127,37 @@ if ( ! class_exists( 'Custom_Typekit_Fonts_Render' ) ) :
 		 */
 		public function typekit_embed_css() {
 
-			$kit_info = get_option( 'custom-typekit-fonts' );
+			/**
+			 * Filter to conditionally prevent Adobe Fonts from loading on the frontend.
+			 *
+			 * Provided for GDPR/DSGVO compliance. Allows developers to integrate with
+			 * cookie consent tools (Borlabs Cookie, CCM19, Cookiebot, etc.) and prevent
+			 * fonts from loading until the user has given explicit consent.
+			 *
+			 * Default: true (fonts load normally). Return false to suppress loading.
+			 *
+			 * @since 2.2.0
+			 *
+			 * @param bool   $load_fonts   Whether to load Adobe Fonts on this page load.
+			 * @param string $kit_id       The configured Adobe Fonts Kit ID (may be empty).
+			 * @param string $embed_method 'css' or 'javascript'.
+			 */
+			$kit_info_for_filter = get_option( 'custom-typekit-fonts' );
+			$filter_kit_id       = isset( $kit_info_for_filter['custom-typekit-font-id'] ) ? $kit_info_for_filter['custom-typekit-font-id'] : '';
+			$filter_embed_method = isset( $kit_info_for_filter['custom-typekit-embed-method'] ) ? $kit_info_for_filter['custom-typekit-embed-method'] : 'css';
+
+			if ( ! apply_filters( 'custom_typekit_fonts_load_fonts', true, $filter_kit_id, $filter_embed_method ) ) {
+				return;
+			}
+
+			$kit_info = $kit_info_for_filter;
 
 			if ( empty( $kit_info['custom-typekit-font-details'] ) || empty( $kit_info['custom-typekit-font-id'] ) ) {
+				return;
+			}
+
+			// GDPR: respect the admin "Disable Automatic Font Output" toggle.
+			if ( ! empty( $kit_info['custom-typekit-disable-auto-load'] ) ) {
 				return;
 			}
 
