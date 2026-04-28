@@ -72,12 +72,7 @@ $kit_info = get_option( 'custom-typekit-fonts' );
 
 								<tr valign="top">
 									<th scope="row">
-										<label for="custom-typekit-disable-auto-load">
-											<?php esc_html_e( 'Disable Automatic Font Output', 'custom-typekit-fonts' ); ?>
-										</label>
-										<i class="custom-typekit-fonts-help dashicons dashicons-editor-help"
-										title="<?php echo esc_attr__( 'When enabled, Adobe Fonts will not be loaded automatically on the frontend. Use this for GDPR/DSGVO compliance to prevent fonts loading before user consent. You can then load the fonts manually after consent is obtained.', 'custom-typekit-fonts' ); ?>">
-										</i>
+										<label for="custom-typekit-disable-auto-load"><?php esc_html_e( 'Disable Font Output', 'custom-typekit-fonts' ); ?><i class="custom-typekit-fonts-help dashicons dashicons-editor-help" title="<?php echo esc_attr__( 'When enabled, Adobe Fonts will not be loaded automatically on the frontend. Use this for GDPR/DSGVO compliance to prevent fonts loading before user consent. You can then load the fonts manually after consent is obtained.', 'custom-typekit-fonts' ); ?>"></i></label>
 									</th>
 									<td>
 										<label>
@@ -140,20 +135,22 @@ $kit_info = get_option( 'custom-typekit-fonts' );
 										</td>
 									</tr>
 								<?php endif; ?>
+								<tr valign="top">
+									<th scope="row"></th>
+									<td>
+										<input
+											type="submit"
+											name="custom-typekit-save-settings"
+											class="button button-large button-primary"
+											value="<?php esc_attr_e( 'Save Settings', 'custom-typekit-fonts' ); ?>"
+										/>
+									</td>
+								</tr>
 								</tbody>
 							</table>
 
 							<?php wp_nonce_field( 'custom-typekit-fonts', 'custom-typekit-fonts-nonce' ); ?>
 							<input name="custom-typekit-fonts-submitted" type="hidden" value="submitted">
-
-							<p class="submit">
-								<input
-									type="submit"
-									name="custom-typekit-save-settings"
-									class="button button-primary"
-									value="<?php esc_attr_e( 'Save Settings', 'custom-typekit-fonts' ); ?>"
-								/>
-							</p>
 
 						</form>
 					</div>
