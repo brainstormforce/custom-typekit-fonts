@@ -146,6 +146,15 @@ $kit_info = get_option( 'custom-typekit-fonts' );
 							<?php wp_nonce_field( 'custom-typekit-fonts', 'custom-typekit-fonts-nonce' ); ?>
 							<input name="custom-typekit-fonts-submitted" type="hidden" value="submitted">
 
+							<p class="submit">
+								<input
+									type="submit"
+									name="custom-typekit-save-settings"
+									class="button button-primary"
+									value="<?php esc_attr_e( 'Save Settings', 'custom-typekit-fonts' ); ?>"
+								/>
+							</p>
+
 						</form>
 					</div>
 				</div>

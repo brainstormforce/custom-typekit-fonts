@@ -63,6 +63,16 @@ if ( ! class_exists( 'Custom_Typekit_Fonts' ) ) {
 
 			if ( isset( $_POST['custom-typekit-fonts-nonce'] ) && wp_verify_nonce( $_POST['custom-typekit-fonts-nonce'], 'custom-typekit-fonts' ) ) {
 
+				// "Save Settings" — persists embed method + GDPR toggle without re-fetching the kit from Adobe API.
+				if ( isset( $_POST['custom-typekit-save-settings'] ) ) {
+					$saved                                      = get_option( 'custom-typekit-fonts', array() );
+					$embed_method                               = isset( $_POST['custom-typekit-embed-method'] ) ? sanitize_text_field( $_POST['custom-typekit-embed-method'] ) : 'css';
+					$saved['custom-typekit-embed-method']       = in_array( $embed_method, array( 'css', 'javascript' ), true ) ? $embed_method : 'css';
+					$saved['custom-typekit-disable-auto-load']  = isset( $_POST['custom-typekit-disable-auto-load'] ) ? 1 : 0;
+					update_option( 'custom-typekit-fonts', $saved );
+					return;
+				}
+
 				if ( isset( $_POST['custom-typekit-fonts-submitted'] ) ) {
 					if ( sanitize_text_field( $_POST['custom-typekit-fonts-submitted'] ) == 'submitted' ) {
 
