@@ -4,7 +4,7 @@ Donate link: https://www.paypal.me/BrainstormForce
 Tags: custom adobe fonts, theme custom fonts, unlimited typekit custom fonts
 Requires at least: 4.4
 Tested up to: 6.9
-Stable tag: 2.1.1
+Stable tag: 2.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -39,6 +39,45 @@ If you're not using any of the supported plugins and theme, you can write the cu
 4. If you are using [Astra](https://wpastra.com) then start using fonts from the customizer.
 5. You can also select Font Family from Appearance -> Adobe Fonts and start using it into your custom CSS.
 
+== GDPR / DSGVO Integration ==
+
+By default, Adobe Fonts loads automatically on every page. To comply with GDPR/DSGVO, you can prevent this connection until the visitor has given consent.
+
+= Option 1: Admin Toggle (no code required) =
+
+Go to **Appearance → Adobe Fonts** and enable **"Disable Font Output"**. This blocks all connections to `use.typekit.net` on the frontend. You are then responsible for loading the fonts after consent is obtained (see Option 2 or Option 3).
+
+= Option 2: PHP Filter (recommended for server-side consent tools) =
+
+Use the `custom_typekit_fonts_load_fonts` filter to tie loading to your consent plugin:
+
+`add_filter( 'custom_typekit_fonts_load_fonts', function( $load, $kit_id, $embed_method ) {
+    // Example: only load if the visitor has accepted marketing cookies
+    return isset( $_COOKIE['consent_marketing'] ) && $_COOKIE['consent_marketing'] === '1';
+}, 10, 3 );`
+
+Compatible with Borlabs Cookie, Cookiebot, CCM19, and any tool that sets a consent cookie before the page renders.
+
+= Option 3: JavaScript (client-side consent banner) =
+
+Keep the admin toggle enabled, then load the kit manually in your theme after the visitor accepts:
+
+`function loadAdobeFonts( kitId ) {
+    var link  = document.createElement( 'link' );
+    link.rel  = 'stylesheet';
+    link.href = 'https://use.typekit.net/' + kitId + '.css';
+    document.head.appendChild( link );
+}
+
+// Example wiring for Cookiebot
+window.addEventListener( 'CookiebotOnAccept', function() {
+    if ( Cookiebot.consent.marketing ) {
+        loadAdobeFonts( 'YOUR_KIT_ID' );
+    }
+} );`
+
+Replace `YOUR_KIT_ID` with the Project ID shown under Appearance → Adobe Fonts.
+
 == Screenshots ==
 
 1. Get your Project ID
@@ -50,6 +89,10 @@ If you're not using any of the supported plugins and theme, you can write the cu
 7. Select any Adobe font from Beaver Builder Theme Customizer
 
 == Changelog ==
+
+= 2.2.0 =
+- New: Added `custom_typekit_fonts_load_fonts` filter for consent-based font loading (GDPR/DSGVO).
+- New: "Disable Automatic Font Output" admin setting under Appearance → Adobe Fonts.
 
 = 2.1.1 =
 - New: Added JavaScript embed method option for Adobe Fonts with Dynamic Subsetting support.
