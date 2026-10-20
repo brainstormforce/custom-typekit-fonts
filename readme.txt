@@ -51,6 +51,9 @@ If you're not using any of the supported plugins and theme, you can write the cu
 
 == Changelog ==
 
+= 2.1.2 =
+- Improvement: Hardened the output escaping on the plugin's settings page.
+
 = 2.1.1 =
 - New: Added JavaScript embed method option for Adobe Fonts with Dynamic Subsetting support.
 
