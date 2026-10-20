@@ -4,7 +4,7 @@
 
 Custom Adobe Fonts (Typekit) is a WordPress plugin by Brainstorm Force. Extend font support with Adobe Typekit fonts integration.
 
-- **Version:** 2.1.1
+- **Version:** 2.1.2
 - **Text Domain:** custom-typekit-fonts
 - **Main File:** custom-typekit-fonts.php
 - **Requires:** WordPress, PHP 5.6+

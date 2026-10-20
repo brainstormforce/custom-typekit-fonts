@@ -7,7 +7,7 @@
 | Key | Value |
 |-----|-------|
 | **Plugin Name** | Custom Adobe Fonts (Typekit) |
-| **Version** | 2.1.1 |
+| **Version** | 2.1.2 |
 | **Text Domain** | custom-typekit-fonts |
 | **Main File** | `custom-typekit-fonts.php` |
 | **PHP Files** | 12 |
