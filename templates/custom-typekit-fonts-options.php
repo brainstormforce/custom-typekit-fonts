@@ -70,6 +70,27 @@ $kit_info = get_option( 'custom-typekit-fonts' );
 									</td>
 								</tr>
 
+								<tr valign="top">
+									<th scope="row">
+										<label for="custom-typekit-disable-auto-load"><?php esc_html_e( 'Disable Font Output', 'custom-typekit-fonts' ); ?><i class="custom-typekit-fonts-help dashicons dashicons-editor-help" title="<?php echo esc_attr__( 'When enabled, Adobe Fonts will not be loaded automatically on the frontend. Use this for GDPR/DSGVO compliance to prevent fonts loading before user consent. You can then load the fonts manually after consent is obtained.', 'custom-typekit-fonts' ); ?>"></i></label>
+									</th>
+									<td>
+										<label>
+											<input
+												type="checkbox"
+												id="custom-typekit-disable-auto-load"
+												name="custom-typekit-disable-auto-load"
+												value="1"
+												<?php checked( 1, isset( $kit_info['custom-typekit-disable-auto-load'] ) ? (int) $kit_info['custom-typekit-disable-auto-load'] : 0 ); ?>
+											/>
+											<?php esc_html_e( 'Prevent Adobe Fonts from loading automatically on the frontend', 'custom-typekit-fonts' ); ?>
+										</label>
+										<p class="description">
+											<?php esc_html_e( 'Use this setting for GDPR compliance. When checked, no connection will be made to use.typekit.net until the fonts are loaded manually after obtaining user consent.', 'custom-typekit-fonts' ); ?>
+										</p>
+									</td>
+								</tr>
+
 								<?php if ( ! empty( $kit_info['custom-typekit-font-details'] ) ) : ?>
 									<tr>
 										<th>
@@ -114,6 +135,17 @@ $kit_info = get_option( 'custom-typekit-fonts' );
 										</td>
 									</tr>
 								<?php endif; ?>
+								<tr valign="top">
+									<th scope="row"></th>
+									<td>
+										<input
+											type="submit"
+											name="custom-typekit-save-settings"
+											class="button button-large button-primary"
+											value="<?php esc_attr_e( 'Save Settings', 'custom-typekit-fonts' ); ?>"
+										/>
+									</td>
+								</tr>
 								</tbody>
 							</table>
 
